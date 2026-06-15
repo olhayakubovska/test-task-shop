@@ -29,17 +29,16 @@ export function buildProductsSearchParams(query: ProductsQuery): URLSearchParams
 
 export function useProducts(query: ProductsQuery): UseProductsResult {
   const [data, setData] = useState<ProductsResponse | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [resolvedKey, setResolvedKey] = useState<string | null>(null);
   const [reloadToken, setReloadToken] = useState(0);
 
   const searchParams = buildProductsSearchParams(query).toString();
+  const requestKey = `${searchParams}::${reloadToken}`;
+  const isLoading = resolvedKey !== requestKey;
 
   useEffect(() => {
     const controller = new AbortController();
-
-    setIsLoading(true);
-    setError(null);
 
     fetch(`/api/products?${searchParams}`, { signal: controller.signal })
       .then((response) => {
@@ -50,17 +49,18 @@ export function useProducts(query: ProductsQuery): UseProductsResult {
       })
       .then((json) => {
         setData(json);
+        setError(null);
       })
       .catch((err: unknown) => {
         if (err instanceof DOMException && err.name === "AbortError") return;
         setError(err instanceof Error ? err.message : "Невідома помилка");
       })
       .finally(() => {
-        setIsLoading(false);
+        setResolvedKey(requestKey);
       });
 
     return () => controller.abort();
-  }, [searchParams, reloadToken]);
+  }, [searchParams, reloadToken, requestKey]);
 
   return {
     data,

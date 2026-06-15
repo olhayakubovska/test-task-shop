@@ -34,6 +34,7 @@ export function ProductCatalog() {
   });
 
   const [items, setItems] = useState<Product[]>([]);
+  const [isAppendPending, setIsAppendPending] = useState(false);
   const isAppendingRef = useRef(false);
 
   useEffect(() => {
@@ -41,6 +42,7 @@ export function ProductCatalog() {
     if (isAppendingRef.current) {
       setItems((prev) => [...prev, ...data.items]);
       isAppendingRef.current = false;
+      setIsAppendPending(false);
     } else {
       setItems(data.items);
     }
@@ -48,18 +50,20 @@ export function ProductCatalog() {
 
   const handleLoadMore = () => {
     isAppendingRef.current = true;
+    setIsAppendPending(true);
     setPage(filters.page + 1);
   };
 
   const handlePageChange = () => {
     isAppendingRef.current = false;
+    setIsAppendPending(false);
   };
 
   const total = data?.total ?? 0;
   const totalPages = data?.totalPages ?? 1;
   const remaining = Math.min(PAGE_SIZE, Math.max(0, total - items.length));
   const isInitialLoading = isLoading && items.length === 0;
-  const isLoadingMore = isLoading && isAppendingRef.current;
+  const isLoadingMore = isLoading && isAppendPending;
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
