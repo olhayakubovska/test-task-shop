@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WOH — World of Heels | Каталог взуття
 
-## Getting Started
+Тестове завдання: сторінка каталогу взуття на Next.js, TypeScript, Tailwind CSS
+з архітектурою Feature-Sliced Design (FSD).
 
-First, run the development server:
+## Запуск проєкту
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Відкрити [http://localhost:3000](http://localhost:3000) — головна сторінка
+перенаправляє на `/catalog`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Інші команди:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # production build
+npm run start   # запуск production build
+npm run lint    # перевірка ESLint
+```
 
-## Learn More
+## Функціональність
 
-To learn more about Next.js, take a look at the following resources:
+- Сітка товарів з картками (зображення, кнопка "вподобати", бейдж знижки,
+  назва, лінія/підзаголовок, ціна зі знижкою).
+- Фільтри: категорія (з лічильниками), розмір стельки, висота каблука,
+  матеріал, колір, діапазон ціни.
+- Сортування товарів.
+- Пагінація та кнопка "Показати ще".
+- Усі фільтри, сортування та пагінація синхронізовані з URL (можна
+  поділитися посиланням зі збереженим станом).
+- Стани завантаження (skeleton), порожнього результату та помилки
+  (з повторним запитом).
+- Адаптивна верстка для десктопа, планшета та мобільних пристроїв
+  (бічна панель фільтрів на десктопі, висувна шторка на менших екранах).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Мок API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Дані не беруться із зовнішнього бекенду — використовується локальний
+route handler `src/app/api/products/route.ts`, який віддає згенерований
+набір товарів (`src/shared/api/mock-data.ts`) з підтримкою фільтрації,
+сортування, пагінації та лічильників по категоріях. Додано штучну
+затримку відповіді, щоб продемонструвати стан завантаження.
 
-## Deploy on Vercel
+Зображення товарів — локальні SVG-плейсхолдери (`public/products/`),
+оскільки реальні фото з макета недоступні.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Архітектура (FSD)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/                  # Next.js App Router: layout, сторінки, API route
+  views/catalog/        # композиція сторінки каталогу (рівень "pages" FSD)
+  widgets/              # header, footer, product-catalog, recommended-products
+  features/             # product-filters, product-sort, pagination
+  entities/             # product (тип, картка, хук завантаження)
+  shared/                # UI-примітиви, типи, конфіг, утиліти, мок-дані
+```
+
+## Відомі обмеження
+
+- Зображення товарів — плейсхолдери, відповідні фотографії з Figma не
+  використовувались.
+- Дані зберігаються лише в пам'яті процесу (мок API), без персистентного
+  бекенду.
