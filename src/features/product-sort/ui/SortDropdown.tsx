@@ -50,7 +50,7 @@ export function SortDropdown() {
                   }}
                   className={cn(
                     "block w-full px-4 py-2.5 text-left text-sm hover:bg-bg-muted cursor-pointer",
-                    option.value === filters.sort && "font-semibold text-accent",
+                    option.value === filters.sort && "font-semibold text-pink-main",
                   )}
                 >
                   {option.label}

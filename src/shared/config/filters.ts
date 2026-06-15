@@ -44,4 +44,4 @@ export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: "name-desc", label: "За назвою (Я-А)" },
 ];
 
-export const PAGE_SIZE = 9;
+export const PAGE_SIZE = 24;

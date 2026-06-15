@@ -11,8 +11,12 @@ export function LoadMoreButton({ onClick, isLoading, remaining }: LoadMoreButton
   if (remaining <= 0) return null;
 
   return (
-    <div className="flex justify-center py-4">
-      <Button variant="outline" onClick={onClick} disabled={isLoading} className="min-w-64">
+    <div className="flex justify-center mt-6">
+      <Button
+        onClick={onClick}
+        disabled={isLoading}
+        className="border border-dark-main bg-transparent font-medium tracking-[0.04em]  text-xs text-dark-main px-10 py-3"
+      >
         {isLoading ? <Spinner className="h-4 w-4" /> : `Показати ще ${remaining} товари`}
       </Button>
     </div>

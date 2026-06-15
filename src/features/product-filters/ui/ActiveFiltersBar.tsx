@@ -11,7 +11,7 @@ export function ActiveFiltersBar() {
   if (chips.length === 0) return null;
 
   return (
-    <div className="flex flex-wrap items-center gap-2 border-b border-border py-4">
+    <div className="hidden flex-wrap items-center gap-2 border-b border-border py-2 lg:flex">
       <span className="text-xs font-bold uppercase tracking-wide text-text-muted">Фільтри:</span>
       {chips.map((chip) => (
         <button

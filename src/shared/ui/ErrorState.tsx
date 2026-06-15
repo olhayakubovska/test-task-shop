@@ -16,7 +16,7 @@ export function ErrorState({
       <p className="text-lg font-semibold">{title}</p>
       <p className="max-w-md text-sm text-text-muted">{description}</p>
       {onRetry && (
-        <Button variant="outline" onClick={onRetry}>
+        <Button onClick={onRetry}>
           Спробувати ще раз
         </Button>
       )}

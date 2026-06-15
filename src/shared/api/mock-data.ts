@@ -24,7 +24,7 @@ const BASE_CATEGORY_COUNTS: { category: ProductCategory; count: number }[] = [
   { category: "professional", count: 31 },
 ];
 
-const SALE_EVERY_N = 8; // ~20 of 157 products get marked as sale
+const SALE_EVERY_N = 2; // every other product gets marked as sale
 
 function buildLine(category: ProductCategory): string {
   switch (category) {
@@ -70,7 +70,7 @@ function buildProducts(): Product[] {
         heelHeight,
         material,
         color,
-        image: getPlaceholderImage(index),
+        image: getPlaceholderImage(),
       });
 
       index += 1;

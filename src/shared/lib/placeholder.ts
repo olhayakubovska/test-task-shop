@@ -12,8 +12,8 @@ const PALETTE = [
 const HEEL_PATH =
   "M150 80 L320 80 L340 420 C342 470 300 520 240 540 L120 600 C 90 615 60 600 65 565 L 95 470 L 110 200 Z";
 
-export function getPlaceholderImage(index: number): string {
-  return `/products/placeholder-${index % PALETTE.length}.svg`;
+export function getPlaceholderImage(): string {
+  return "/products/product-1.png";
 }
 
 export const PLACEHOLDER_PALETTE = PALETTE;

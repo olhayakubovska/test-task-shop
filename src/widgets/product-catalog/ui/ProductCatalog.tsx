@@ -67,19 +67,26 @@ export function ProductCatalog() {
   const isLoadingMore = isLoading && isAppendPending;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <p className="mb-3 text-xs uppercase tracking-wide text-text-muted">
-        <Link href="/catalog" className="hover:text-accent">Головна</Link> / <span className="text-accent">Каталог взуття</span>
+    <div className="mx-auto max-w-375 px-4 pt-4 sm:px-6 lg:px-8">
+      <p className="font-semibold text-[10px] leading-[100%] flex gap-1.5 tracking-[2px] text-grey-text mb-4 uppercase">
+        <Link href="/catalog" className="hover:text-pink-main">
+          Головна
+        </Link>
+        <span>/</span>
+        <span className="text-pink-main">Каталог взуття</span>
       </p>
 
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-3xl font-black uppercase tracking-tight sm:text-4xl">Каталог взуття</h1>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+        <h1 className="font-bold text-xl tracking-[2px] uppercase">Каталог взуття</h1>
+
         <div className="hidden lg:block">
           <SortDropdown />
         </div>
       </div>
 
-      <div className="mb-4 flex items-center gap-3 lg:hidden">
+      <div className="mb-4 h-0 border-t border-black/20 -mx-4"></div>
+
+      <div className="mb-3 flex items-center gap-3  lg:hidden">
         <MobileFilterDrawer categoryCounts={data?.categoryCounts} total={total} />
         <MobileSortSheet />
       </div>
@@ -105,7 +112,7 @@ export function ProductCatalog() {
               title="Товарів не знайдено"
               description="Спробуйте змінити або скинути фільтри, щоб побачити більше товарів."
               action={
-                <Button variant="outline" onClick={clearAll}>
+                <Button onClick={clearAll}>
                   Очистити фільтри
                 </Button>
               }
@@ -117,7 +124,12 @@ export function ProductCatalog() {
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
-              <LoadMoreButton onClick={handleLoadMore} isLoading={isLoadingMore} remaining={remaining} />
+              <LoadMoreButton
+                onClick={handleLoadMore}
+                isLoading={isLoadingMore}
+                remaining={remaining}
+              />
+
               <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
             </>
           )}

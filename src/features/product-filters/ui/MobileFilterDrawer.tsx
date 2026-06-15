@@ -20,9 +20,12 @@ export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawer
 
   return (
     <>
-      <Button variant="outline" onClick={() => setIsOpen(true)} className="lg:hidden">
+      <Button
+        onClick={() => setIsOpen(true)}
+        className="lg:hidden bg-pink-main py-2 px-8  gap-2 text-white-main font-golos font-semibold text-xs"
+      >
         <FilterIcon />
-        Фільтри
+        <span className="font-semibold text-xs leading-none w-12">Фільтри</span>
       </Button>
 
       {isOpen && (
@@ -49,7 +52,9 @@ export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawer
             {chips.length > 0 && (
               <div className="mb-4 border-b border-border pb-4">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wide text-text-muted">Обрано:</span>
+                  <span className="text-xs font-bold uppercase tracking-wide text-text-muted">
+                    Обрано:
+                  </span>
                   <button
                     type="button"
                     onClick={clearAll}

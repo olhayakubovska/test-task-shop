@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
-  <rect width="600" height="800" fill="#efe6e9"/>
-  <g transform="translate(130 90)" fill="#3a2c30" opacity="0.85">
-    <path d="M150 80 L320 80 L340 420 C342 470 300 520 240 540 L120 600 C90 615 60 600 65 565 L95 470 L110 200 Z"/>
-  </g>
-  <text x="300" y="760" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" letter-spacing="4" fill="#3a2c30" opacity="0.5">WORLD OF HEELS</text>
-</svg>
