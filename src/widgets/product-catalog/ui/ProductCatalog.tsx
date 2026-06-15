@@ -11,6 +11,7 @@ import { MobileFilterDrawer } from "@/features/product-filters/ui/MobileFilterDr
 import { LoadMoreButton } from "@/features/pagination/ui/LoadMoreButton";
 import { Pagination } from "@/features/pagination/ui/Pagination";
 import { SortDropdown } from "@/features/product-sort/ui/SortDropdown";
+import { MobileSortSheet } from "@/features/product-sort/ui/MobileSortSheet";
 import { PAGE_SIZE } from "@/shared/config/filters";
 import { EmptyState } from "@/shared/ui/EmptyState";
 import { ErrorState } from "@/shared/ui/ErrorState";
@@ -73,11 +74,14 @@ export function ProductCatalog() {
 
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <h1 className="text-3xl font-black uppercase tracking-tight sm:text-4xl">Каталог взуття</h1>
-        <SortDropdown />
+        <div className="hidden lg:block">
+          <SortDropdown />
+        </div>
       </div>
 
-      <div className="mb-4 flex items-center justify-between gap-4 lg:hidden">
-        <MobileFilterDrawer categoryCounts={data?.categoryCounts} />
+      <div className="mb-4 flex items-center gap-3 lg:hidden">
+        <MobileFilterDrawer categoryCounts={data?.categoryCounts} total={total} />
+        <MobileSortSheet />
       </div>
 
       <ActiveFiltersBar />

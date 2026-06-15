@@ -1,8 +1,14 @@
 import Link from "next/link";
+import { FacebookIcon, InstagramIcon, TelegramIcon, TikTokIcon } from "@/shared/ui/icons";
 
 const CATALOG_LINKS = ["High Heels", "Одяг", "Образи", "Костюми", "Шорти", "Аксесуари"];
 const COMPANY_LINKS = ["Каталог товарів", "Про нас", "Співпраця", "Оплата і Доставка", "Гарантії і повернення", "Контакти"];
-const SOCIAL_LINKS = ["Instagram", "Facebook", "Telegram", "TikTok"];
+const SOCIAL_LINKS = [
+  { label: "Instagram", Icon: InstagramIcon },
+  { label: "Facebook", Icon: FacebookIcon },
+  { label: "Telegram", Icon: TelegramIcon },
+  { label: "TikTok", Icon: TikTokIcon },
+];
 
 export function Footer() {
   return (
@@ -15,14 +21,15 @@ export function Footer() {
             складну конструкцію на легкість вашого танцю.
           </p>
           <div className="flex gap-3">
-            {SOCIAL_LINKS.map((social) => (
-              <span
-                key={social}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-xs font-bold"
-                aria-label={social}
+            {SOCIAL_LINKS.map(({ label, Icon }) => (
+              <Link
+                key={label}
+                href="#"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border hover:border-foreground"
+                aria-label={label}
               >
-                {social[0]}
-              </span>
+                <Icon width={16} height={16} />
+              </Link>
             ))}
           </div>
         </div>
