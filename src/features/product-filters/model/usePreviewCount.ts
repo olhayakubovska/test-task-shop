@@ -19,7 +19,6 @@ export function usePreviewCount(pending: CatalogFilters): number | null {
       if (pending.material) char["material"] = pending.material;
       if (pending.color) char["color"] = pending.color;
 
-      // Use first selected category for preview count
       const firstCategory = pending.categories[0];
 
       fetchCatalogCards({
@@ -34,7 +33,6 @@ export function usePreviewCount(pending: CatalogFilters): number | null {
     }, 400);
 
     return () => clearTimeout(timer);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     categoriesKey,
     pending.insoleSize,

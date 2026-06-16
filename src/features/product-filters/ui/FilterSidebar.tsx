@@ -45,10 +45,8 @@ export const FilterSidebar = forwardRef<FilterSidebarHandle, FilterSidebarProps>
       onPendingChange?.(pending);
     }, [pending, onPendingChange]);
 
-    // Sync from URL when sort/page changes (external navigation)
     useEffect(() => {
       setPending(parseCatalogFilters(searchParams));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams.get("sort"), searchParams.get("page")]);
 
     const toggleCategory = (cat: CategorySlug) => {

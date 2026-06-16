@@ -1,5 +1,3 @@
-// Real API types — http://test-woh.keykey.com.ua/v1
-
 export interface LocalizedText {
   ua: string;
   en: string;
@@ -54,7 +52,6 @@ export interface CatalogQuery {
   limit?: number;
 }
 
-// Category slug → ID map (from /catalog/categories/tree)
 export const CATEGORY_ID_MAP: Record<string, string> = {
   "high-heels": "69fdaa7c5c7946d45d6d9e1d",
   training: "69fdaa7c5c7946d45d6d9e21",

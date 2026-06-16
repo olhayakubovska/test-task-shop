@@ -8,12 +8,15 @@ export function CatalogPage() {
   return (
     <div className="flex min-h-full flex-col">
       <Header />
+      
       <main className="flex-1">
         <Suspense>
           <ProductCatalog />
         </Suspense>
+
         <RecommendedProducts />
       </main>
+
       <Footer />
     </div>
   );

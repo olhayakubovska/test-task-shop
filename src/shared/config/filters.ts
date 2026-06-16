@@ -47,7 +47,6 @@ export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
 
 export const PAGE_SIZE = 24;
 
-// Convert insole size number to API char key (23.5 → "23-5")
 export function insoleSizeToApiKey(size: number): string {
   return String(size).replace(".", "-");
 }
