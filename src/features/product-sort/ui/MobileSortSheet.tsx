@@ -32,32 +32,38 @@ export function MobileSortSheet() {
             onClick={() => setIsOpen(false)}
             className="absolute inset-0 bg-black/40"
           />
-          <div className="relative z-10 w-full rounded-t-2xl bg-background p-5 shadow-xl">
-            <h2 className="mb-4 text-center text-sm font-bold uppercase tracking-wide">
+          <div className="relative z-10 w-full rounded-t-[10px] bg-white-main shadow-xl">
+            <h2 className="py-4 text-center text-base font-semibold border-b border-border">
               Сортування
             </h2>
             <ul role="listbox">
-              {SORT_OPTIONS.map((option) => (
-                <li key={option.value}>
-                  <button
-                    type="button"
-                    role="option"
-                    aria-selected={option.value === filters.sort}
-                    onClick={() => {
-                      setSort(option.value);
-                      setIsOpen(false);
-                    }}
-                    className={cn(
-                      "block w-full rounded-md px-4 py-3 text-left text-sm cursor-pointer",
-                      option.value === filters.sort
-                        ? "bg-accent-soft font-semibold text-pink-main"
-                        : "hover:bg-bg-muted"
-                    )}
-                  >
-                    {option.label}
-                  </button>
-                </li>
-              ))}
+              {SORT_OPTIONS.map((option) => {
+                const isActive = option.value === filters.sort;
+                return (
+                  <li key={option.value} className="border-t border-border first:border-t-0">
+                    <button
+                      type="button"
+                      role="option"
+                      aria-selected={isActive}
+                      onClick={() => {
+                        setSort(option.value);
+                        setIsOpen(false);
+                      }}
+                      className={cn(
+                        "flex w-full items-center gap-0 text-left text-sm font-medium cursor-pointer",
+                        isActive
+                          ? "text-pink-main font-semibold"
+                          : "px-4 py-4 text-foreground hover:text-pink-main"
+                      )}
+                    >
+                      {isActive && (
+                        <span className="mr-3 h-12.25 w-1 shrink-0 bg-pink-main rounded-r-full" />
+                      )}
+                      {option.label}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

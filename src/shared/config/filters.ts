@@ -40,8 +40,6 @@ export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: "default", label: "За замовчуванням" },
   { value: "price-asc", label: "Спочатку дешевші" },
   { value: "price-desc", label: "Спочатку дорожчі" },
-  { value: "name-asc", label: "За назвою (А-Я)" },
-  { value: "name-desc", label: "За назвою (Я-А)" },
 ];
 
 export const PAGE_SIZE = 24;
