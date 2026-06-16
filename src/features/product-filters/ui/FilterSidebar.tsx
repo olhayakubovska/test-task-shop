@@ -15,13 +15,8 @@ import { RangeSlider } from "@/shared/ui/RangeSlider";
 import { formatPrice } from "@/shared/lib/format";
 import { useCatalogFilters } from "@/shared/lib/useCatalogFilters";
 import { FilterSection } from "@/features/product-filters/ui/FilterSection";
-import type { ProductCategory } from "@/shared/api/types";
 
-interface FilterSidebarProps {
-  categoryCounts?: Record<ProductCategory, number>;
-}
-
-export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
+export function FilterSidebar() {
   const {
     filters,
     toggleCategory,
@@ -46,7 +41,7 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
           {CATEGORY_OPTIONS.map((option) => (
             <Checkbox
               key={option.value}
-              label={`${option.label}${categoryCounts ? ` (${categoryCounts[option.value] ?? 0})` : ""}`}
+              label={option.label}
               checked={filters.category === option.value}
               onChange={() => toggleCategory(option.value)}
             />

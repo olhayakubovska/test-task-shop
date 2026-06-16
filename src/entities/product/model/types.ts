@@ -1,1 +1,1 @@
-export type { Product, ProductCategory, ProductColor, ProductMaterial, HeelHeight } from "@/shared/api/types";
+export type { CatalogCard, ProductColor, ProductMaterial, HeelHeight, CategorySlug } from "@/shared/api/types";

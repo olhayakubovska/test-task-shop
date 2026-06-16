@@ -1,71 +1,72 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { ProductsQuery, ProductsResponse } from "@/shared/api/types";
+import { fetchCatalogCards } from "@/shared/api/catalog";
+import { insoleSizeToApiKey, PAGE_SIZE } from "@/shared/config/filters";
+import { CATEGORY_ID_MAP } from "@/shared/api/types";
+import type { CatalogCardsResponse, SortOption } from "@/shared/api/types";
 
 interface UseProductsResult {
-  data: ProductsResponse | null;
+  data: CatalogCardsResponse | null;
   isLoading: boolean;
   error: string | null;
   refetch: () => void;
 }
 
-export function buildProductsSearchParams(query: ProductsQuery): URLSearchParams {
-  const params = new URLSearchParams();
-
-  if (query.category) params.set("category", query.category);
-  if (query.insoleSize) params.set("insoleSize", String(query.insoleSize));
-  if (query.heelHeight) params.set("heelHeight", query.heelHeight);
-  if (query.material) params.set("material", query.material);
-  if (query.color) params.set("color", query.color);
-  if (query.minPrice) params.set("minPrice", String(query.minPrice));
-  if (query.maxPrice) params.set("maxPrice", String(query.maxPrice));
-  if (query.sort) params.set("sort", query.sort);
-  if (query.page) params.set("page", String(query.page));
-  if (query.limit) params.set("limit", String(query.limit));
-
-  return params;
+interface ProductsInput {
+  category?: string;
+  insoleSize?: number;
+  heelHeight?: string;
+  material?: string;
+  color?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  sort?: string;
+  page?: number;
+  limit?: number;
 }
 
-export function useProducts(query: ProductsQuery): UseProductsResult {
-  const [data, setData] = useState<ProductsResponse | null>(null);
+export function useProducts(filters: ProductsInput): UseProductsResult {
+  const [data, setData] = useState<CatalogCardsResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [resolvedKey, setResolvedKey] = useState<string | null>(null);
   const [reloadToken, setReloadToken] = useState(0);
 
-  const searchParams = buildProductsSearchParams(query).toString();
-  const requestKey = `${searchParams}::${reloadToken}`;
-  const isLoading = resolvedKey !== requestKey;
+  const queryKey = JSON.stringify({ ...filters, reloadToken });
+  const isLoading = resolvedKey !== queryKey;
 
   useEffect(() => {
-    const controller = new AbortController();
+    const char: Record<string, string> = {};
+    if (filters.insoleSize) char["insoleSize"] = insoleSizeToApiKey(filters.insoleSize);
+    if (filters.heelHeight) char["heelHeight"] = filters.heelHeight;
+    if (filters.material) char["material"] = filters.material;
+    if (filters.color) char["color"] = filters.color;
 
-    fetch(`/api/products?${searchParams}`, { signal: controller.signal })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Request failed with status ${response.status}`);
-        }
-        return response.json() as Promise<ProductsResponse>;
-      })
+    fetchCatalogCards({
+      categoryId: filters.category ? CATEGORY_ID_MAP[filters.category] : undefined,
+      priceMin: filters.minPrice,
+      priceMax: filters.maxPrice,
+      sort: (filters.sort as SortOption) ?? "updated_desc",
+      char: Object.keys(char).length > 0 ? char : undefined,
+      page: filters.page ?? 1,
+      limit: filters.limit ?? PAGE_SIZE,
+    })
       .then((json) => {
         setData(json);
         setError(null);
       })
       .catch((err: unknown) => {
-        if (err instanceof DOMException && err.name === "AbortError") return;
         setError(err instanceof Error ? err.message : "Невідома помилка");
       })
       .finally(() => {
-        setResolvedKey(requestKey);
+        setResolvedKey(queryKey);
       });
-
-    return () => controller.abort();
-  }, [searchParams, reloadToken, requestKey]);
+  }, [queryKey]);
 
   return {
     data,
     isLoading,
     error,
-    refetch: () => setReloadToken((token) => token + 1),
+    refetch: () => setReloadToken((t) => t + 1),
   };
 }

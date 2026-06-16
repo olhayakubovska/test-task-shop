@@ -7,14 +7,11 @@ import { CloseIcon, FilterIcon } from "@/shared/ui/icons";
 import { FilterSidebar } from "@/features/product-filters/ui/FilterSidebar";
 import { useActiveFilterChips } from "@/features/product-filters/model/useActiveFilterChips";
 import { useCatalogFilters } from "@/shared/lib/useCatalogFilters";
-import type { ProductCategory } from "@/shared/api/types";
-
 interface MobileFilterDrawerProps {
-  categoryCounts?: Record<ProductCategory, number>;
   total?: number;
 }
 
-export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawerProps) {
+export function MobileFilterDrawer({ total }: MobileFilterDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { clearAll } = useCatalogFilters();
   const { chips, removeFilter } = useActiveFilterChips();
@@ -97,7 +94,7 @@ export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawer
             </div>
           )}
 
-          <FilterSidebar categoryCounts={categoryCounts} />
+          <FilterSidebar />
 
           <div className="border-t border-[#D9D9D9] mb-4 -mx-4"></div>
 
