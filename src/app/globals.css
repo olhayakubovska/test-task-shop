@@ -42,10 +42,9 @@ body {
   appearance: none;
   width: 16px;
   height: 16px;
-  border-radius: 9999px;
-  background: var(--color-pink-main);
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 0 1px var(--color-border);
+  border-radius: 8px;
+  background: #ffffff;
+  border: 2px solid var(--color-pink-main);
   cursor: pointer;
 }
 
@@ -53,9 +52,8 @@ body {
   pointer-events: auto;
   width: 16px;
   height: 16px;
-  border-radius: 9999px;
-  background: var(--color-pink-main);
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 0 1px var(--color-border);
+  border-radius: 8px;
+  background: #ffffff;
+  border: 2px solid var(--color-pink-main);
   cursor: pointer;
 }

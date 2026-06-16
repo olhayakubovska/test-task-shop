@@ -41,7 +41,7 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
     <aside className="w-full">
       <div className="border-t border-border -mx-4"></div>
 
-      <div className="flex flex-col gap-6 mt-4">
+      <div className="flex flex-col gap-6 mt-4 mb-6">
         <FilterSection title="Категорії">
           {CATEGORY_OPTIONS.map((option) => (
             <Checkbox
@@ -90,7 +90,7 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
         </FilterSection>
 
         <FilterSection title="Колір">
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-3">
             {COLOR_OPTIONS.map((option) => (
               <ColorSwatch
                 key={option.value}
@@ -111,7 +111,7 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
             value={priceValue}
             onChange={setPriceRange}
           />
-          <div className="flex items-center justify-between text-sm text-text-muted">
+          <div className="flex items-center justify-between text-sm text-[#0D0D0D] leading-none font-medium">
             <span>{formatPrice(priceValue[0])}</span>
             <span>{formatPrice(priceValue[1])}</span>
           </div>

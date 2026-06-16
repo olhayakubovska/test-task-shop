@@ -17,7 +17,7 @@ export function FilterSection({ title, children, defaultOpen = true }: FilterSec
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex w-full font-montserrat items-center justify-between tracking-[1px] text-left text-xs font-bold uppercase cursor-pointer"
+        className="flex w-full font-montserrat items-center justify-between tracking-[1px]  text-left text-xs font-bold uppercase cursor-pointer"
       >
         {title}
         {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}

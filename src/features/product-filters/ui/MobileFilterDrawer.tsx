@@ -97,7 +97,9 @@ export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawer
 
           <FilterSidebar categoryCounts={categoryCounts} />
 
-          <div className="mt-4 flex gap-2">
+          <div className="border-t border-[#D9D9D9] mb-4 -mx-4"></div>
+
+          <div className=" flex gap-2 ">
             <Button
               onClick={clearAll}
               className="flex-1 border border-dark-main text-dark-main text-[10px] leading-2 font-semibold uppercase py-3"

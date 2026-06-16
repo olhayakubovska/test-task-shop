@@ -21,7 +21,7 @@ export function RangeSlider({ min, max, step = 1, value, onChange }: RangeSlider
   const toPercent = ((to - min) / (max - min)) * 100;
 
   return (
-    <div className="relative h-5 w-full">
+    <div className="relative h-4 w-full">
       <div className="absolute top-1/2 h-1 w-full -translate-y-1/2 rounded-full bg-border" />
       <div
         className="absolute top-1/2 h-1 -translate-y-1/2 rounded-full bg-pink-main"
