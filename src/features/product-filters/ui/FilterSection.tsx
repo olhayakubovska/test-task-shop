@@ -13,16 +13,16 @@ export function FilterSection({ title, children, defaultOpen = true }: FilterSec
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="border-b border-border py-4">
+    <div className="">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex w-full items-center justify-between text-left text-sm font-bold uppercase tracking-wide cursor-pointer"
+        className="flex w-full font-montserrat items-center justify-between tracking-[1px] text-left text-xs font-bold uppercase cursor-pointer"
       >
         {title}
         {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </button>
-      {isOpen && <div className="mt-4 space-y-3">{children}</div>}
+      {isOpen && <div className="mt-3 space-y-3">{children}</div>}
     </div>
   );
 }

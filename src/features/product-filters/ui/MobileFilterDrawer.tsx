@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui/Button";
 import { CloseIcon, FilterIcon } from "@/shared/ui/icons";
 import { FilterSidebar } from "@/features/product-filters/ui/FilterSidebar";
@@ -28,65 +29,90 @@ export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawer
         <span className="font-semibold text-xs leading-none w-12">Фільтри</span>
       </Button>
 
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex lg:hidden">
-          <button
-            type="button"
-            aria-label="Закрити фільтри"
-            onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-black/40"
-          />
-          <div className="relative ml-auto flex h-full w-full max-w-sm flex-col overflow-y-auto bg-background p-5 shadow-xl">
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-sm font-bold uppercase tracking-wide">Фільтрація</h2>
-              <button
-                type="button"
-                aria-label="Закрити"
-                onClick={() => setIsOpen(false)}
-                className="cursor-pointer"
-              >
-                <CloseIcon />
-              </button>
-            </div>
+      <div
+        className={cn(
+          "fixed inset-0 z-50 flex lg:hidden",
+          isOpen ? "pointer-events-auto" : "pointer-events-none"
+        )}
+      >
+        <button
+          type="button"
+          aria-label="Закрити фільтри"
+          onClick={() => setIsOpen(false)}
+          className={cn(
+            "absolute inset-0 bg-black/60 transition-opacity duration-300",
+            isOpen ? "opacity-100" : "opacity-0"
+          )}
+        />
+        <div
+          className={cn(
+            "relative flex h-full w-76 flex-col overflow-y-auto bg-white-main p-4 shadow-xl transition-transform duration-300",
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          )}
+        >
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="font-golos font-semibold text-sm  tracking-0.7 uppercase">Фільтрація</h2>
+            <button
+              type="button"
+              aria-label="Закрити"
+              onClick={() => setIsOpen(false)}
+              className="cursor-pointer"
+            >
+              <CloseIcon />
+            </button>
+          </div>
 
-            {chips.length > 0 && (
-              <div className="mb-4 border-b border-border pb-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wide text-text-muted">
-                    Обрано:
-                  </span>
-                  <button
-                    type="button"
-                    onClick={clearAll}
-                    className="text-xs font-bold uppercase tracking-wide underline cursor-pointer"
-                  >
-                    Очистити
-                  </button>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  {chips.map((chip) => (
-                    <button
-                      key={chip.key}
-                      type="button"
-                      onClick={() => removeFilter(chip.key)}
-                      className="flex items-center gap-2 rounded-full border border-border bg-bg-muted px-3 py-1.5 text-sm cursor-pointer hover:border-foreground"
-                    >
-                      {chip.label}
-                      <CloseIcon />
-                    </button>
-                  ))}
-                </div>
+          <div className="border-t border-border pb-3 -mx-4"></div>
+
+          {chips.length > 0 && (
+            <div className="mb-3">
+              <div className="mb-2 flex items-center justify-between">
+                <span className="font-montserrat font-bold text-[10px] tracking-[1px] uppercase">
+                  Обрано:
+                </span>
+                <button
+                  type="button"
+                  onClick={clearAll}
+                  className="font-montserrat font-bold text-[10px] tracking-[1px] uppercase underline decoration-solid"
+                >
+                  Очистити
+                </button>
               </div>
-            )}
 
-            <FilterSidebar categoryCounts={categoryCounts} />
+              <div className="flex flex-wrap items-center gap-2">
+                {chips.map((chip) => (
+                  <button
+                    key={chip.key}
+                    type="button"
+                    onClick={() => removeFilter(chip.key)}
+                    className="flex items-center gap-2 bg-[#9999991A] px-1 py-2 h-7 font-golos font-medium text-[10px]  tracking-normal cursor-pointer hover:border-foreground"
+                  >
+                    {chip.label}
+                    <CloseIcon width={6} height={6} />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
-            <Button onClick={() => setIsOpen(false)} className="mt-4 w-full">
+          <FilterSidebar categoryCounts={categoryCounts} />
+
+          <div className="mt-4 flex gap-2">
+            <Button
+              onClick={clearAll}
+              className="flex-1 border border-dark-main text-dark-main text-[10px] leading-2 font-semibold uppercase py-3"
+            >
+              Очистити
+            </Button>
+            <Button
+              onClick={() => setIsOpen(false)}
+              className="flex-1 bg-dark-main text-white-main text-[10px] leading-2 font-semibold uppercase py-3"
+            >
               {total !== undefined ? `Показати (${total})` : "Показати товари"}
             </Button>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

@@ -10,11 +10,11 @@ export function Chip({ active, className, ...props }: ChipProps) {
     <button
       type="button"
       className={cn(
-        "flex items-center justify-center rounded-md border px-3 py-2 text-sm transition-colors cursor-pointer",
+        "flex items-center justify-center border  px-4.5 py-2.5 leading-none text-xs transition-colors cursor-pointer",
         active
-          ? "border-foreground bg-foreground text-background"
+          ? "border-foreground bg-foreground text-white font-bold"
           : "border-border bg-background text-foreground hover:border-foreground",
-        className,
+        className
       )}
       {...props}
     />

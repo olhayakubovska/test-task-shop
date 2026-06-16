@@ -12,14 +12,14 @@ export function ColorSwatch({ hex, label, active, className, ...props }: ColorSw
     <button
       type="button"
       className={cn(
-        "flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors cursor-pointer",
-        active ? "border-foreground" : "border-border hover:border-foreground",
+        "flex items-center gap-2 text-sm font-medium transition-colors cursor-pointer",
+        active ? "fond-semibold" : "border-border",
         className,
       )}
       {...props}
     >
       <span
-        className="h-4 w-4 rounded-sm border border-border"
+        className="h-4 w-4 border border-border"
         style={{ backgroundColor: hex }}
         aria-hidden
       />

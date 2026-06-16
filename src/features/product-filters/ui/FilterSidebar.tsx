@@ -39,80 +39,84 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
 
   return (
     <aside className="w-full">
-      <FilterSection title="Категорії">
-        {CATEGORY_OPTIONS.map((option) => (
-          <Checkbox
-            key={option.value}
-            label={`${option.label}${categoryCounts ? ` (${categoryCounts[option.value] ?? 0})` : ""}`}
-            checked={filters.category === option.value}
-            onChange={() => toggleCategory(option.value)}
-          />
-        ))}
-      </FilterSection>
+      <div className="border-t border-border -mx-4"></div>
 
-      <FilterSection title="Розмір стельки (см)">
-        <div className="grid grid-cols-4 gap-2">
-          {INSOLE_SIZES.map((size) => (
-            <Chip
-              key={size}
-              active={filters.insoleSize === size}
-              onClick={() => toggleInsoleSize(size)}
-            >
-              {size.toFixed(1)}
-            </Chip>
-          ))}
-        </div>
-      </FilterSection>
-
-      <FilterSection title="Параметри каблука">
-        {HEEL_HEIGHT_OPTIONS.map((option) => (
-          <Checkbox
-            key={option.value}
-            label={option.label}
-            checked={filters.heelHeight === option.value}
-            onChange={() => toggleHeelHeight(option.value)}
-          />
-        ))}
-      </FilterSection>
-
-      <FilterSection title="Матеріал">
-        {MATERIAL_OPTIONS.map((option) => (
-          <Checkbox
-            key={option.value}
-            label={option.label}
-            checked={filters.material === option.value}
-            onChange={() => toggleMaterial(option.value)}
-          />
-        ))}
-      </FilterSection>
-
-      <FilterSection title="Колір">
-        <div className="grid grid-cols-2 gap-2">
-          {COLOR_OPTIONS.map((option) => (
-            <ColorSwatch
+      <div className="flex flex-col gap-6 mt-4">
+        <FilterSection title="Категорії">
+          {CATEGORY_OPTIONS.map((option) => (
+            <Checkbox
               key={option.value}
-              hex={option.hex}
-              label={option.label}
-              active={filters.color === option.value}
-              onClick={() => toggleColor(option.value)}
+              label={`${option.label}${categoryCounts ? ` (${categoryCounts[option.value] ?? 0})` : ""}`}
+              checked={filters.category === option.value}
+              onChange={() => toggleCategory(option.value)}
             />
           ))}
-        </div>
-      </FilterSection>
+        </FilterSection>
 
-      <FilterSection title="Ціна, грн" defaultOpen>
-        <RangeSlider
-          min={PRICE_RANGE.min}
-          max={PRICE_RANGE.max}
-          step={100}
-          value={priceValue}
-          onChange={setPriceRange}
-        />
-        <div className="flex items-center justify-between text-sm text-text-muted">
-          <span>{formatPrice(priceValue[0])}</span>
-          <span>{formatPrice(priceValue[1])}</span>
-        </div>
-      </FilterSection>
+        <FilterSection title="Розмір стельки (см)">
+          <div className="grid grid-cols-4 gap-2">
+            {INSOLE_SIZES.map((size) => (
+              <Chip
+                key={size}
+                active={filters.insoleSize === size}
+                onClick={() => toggleInsoleSize(size)}
+              >
+                {size.toFixed(1)}
+              </Chip>
+            ))}
+          </div>
+        </FilterSection>
+
+        <FilterSection title="Параметри каблука">
+          {HEEL_HEIGHT_OPTIONS.map((option) => (
+            <Checkbox
+              key={option.value}
+              label={option.label}
+              checked={filters.heelHeight === option.value}
+              onChange={() => toggleHeelHeight(option.value)}
+            />
+          ))}
+        </FilterSection>
+
+        <FilterSection title="Матеріал">
+          {MATERIAL_OPTIONS.map((option) => (
+            <Checkbox
+              key={option.value}
+              label={option.label}
+              checked={filters.material === option.value}
+              onChange={() => toggleMaterial(option.value)}
+            />
+          ))}
+        </FilterSection>
+
+        <FilterSection title="Колір">
+          <div className="grid grid-cols-2 gap-2">
+            {COLOR_OPTIONS.map((option) => (
+              <ColorSwatch
+                key={option.value}
+                hex={option.hex}
+                label={option.label}
+                active={filters.color === option.value}
+                onClick={() => toggleColor(option.value)}
+              />
+            ))}
+          </div>
+        </FilterSection>
+
+        <FilterSection title="Ціна, грн" defaultOpen>
+          <RangeSlider
+            min={PRICE_RANGE.min}
+            max={PRICE_RANGE.max}
+            step={100}
+            value={priceValue}
+            onChange={setPriceRange}
+          />
+          <div className="flex items-center justify-between text-sm text-text-muted">
+            <span>{formatPrice(priceValue[0])}</span>
+            <span>{formatPrice(priceValue[1])}</span>
+          </div>
+        </FilterSection>
+      </div>
     </aside>
   );
 }
