@@ -17,7 +17,7 @@ export function MobileSortSheet() {
       <Button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="lg:hidden border border-pink-main py-2 px-4 gap-2 text-white-main font-golos text-xs leading-none h-7.5 md:w-full md:rounded-none"
+        className="lg:hidden border w-55 border-pink-main py-2 px-4 gap-2 text-white-main font-golos text-xs leading-none h-7.5 md:w-58.75"
       >
         <span className="text-grey-second whitespace-nowrap">
           Сортування:&nbsp; {current.label}

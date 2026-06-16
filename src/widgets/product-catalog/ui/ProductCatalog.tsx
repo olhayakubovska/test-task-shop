@@ -86,13 +86,9 @@ export function ProductCatalog() {
 
      <div className="mb-4 h-0 border-t border-black/20 -mx-4 md:-mx-6"></div>
 
-      <div className="mb-3 flex items-stretch md:justify-between md:mb-4 lg:hidden">
-        <div className="basis-[30%] md:basis-0">
+      <div className="mb-3 flex justify-between md:mb-4 lg:hidden">
           <MobileFilterDrawer categoryCounts={data?.categoryCounts} total={total} />
-        </div>
-        <div className="basis-[70%]  md:basis-0">
           <MobileSortSheet />
-        </div>
       </div>
 
       <ActiveFiltersBar />
