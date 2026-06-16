@@ -14,7 +14,7 @@ const NAV_LINKS = [
 export function Header() {
   return (
     <header className="border-b border-border bg-background">
-      <div className="mx-auto flex max-w-375 items-center justify-between gap-6 px-4.75 py-3 md:px-6 md:py-3.5">
+      <div className="mx-auto flex max-w-375 items-center justify-between gap-6 px-4.75 py-3 md:px-6 md:py-3.5 3xl:px-0">
         <Link href="/catalog" className="flex items-center">
           <Image
             src="/logo.svg"
@@ -26,7 +26,7 @@ export function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm font-semibold uppercase tracking-wide lg:flex">
+        <nav className="font-montserrat hidden items-center gap-10 text-[13px] font-medium uppercase  leading-[100%] tracking-[1.5px] 3xl:flex">
           {NAV_LINKS.map((link) => (
             <Link key={link.label} href={link.href} className="hover:text-pink-main">
               {link.label}
@@ -55,10 +55,15 @@ export function Header() {
             </span>
           </div>
 
-          <IconButton aria-label="Меню" className="lg:hidden">
+          <IconButton aria-label="Меню" className="3xl:hidden">
             <MenuIcon />
           </IconButton>
-          <span className="hidden pl-2 text-sm font-semibold lg:block">UA</span>
+
+
+
+          <span className="font-montserrat hidden items-center gap-10 text-[13px] font-medium uppercase leading-[100%] tracking-[1.5px] border-l-[0.5px] border-[#0D0D0D] h-6 pl-[16.5px] 3xl:flex">
+            UA
+          </span>
         </div>
       </div>
     </header>

@@ -67,34 +67,36 @@ export function ProductCatalog() {
   const isLoadingMore = isLoading && isAppendPending;
 
   return (
-    <div className="mx-auto max-w-375 px-4 md:px-6 pt-4 lg:px-8">
+    <div className="mx-auto max-w-375 px-4 md:px-6 pt-4 3xl:px-0 3xl:pt-5">
       <p className="font-semibold text-[10px] leading-[100%] flex gap-1.5 tracking-[2px] text-grey-text mb-4 uppercase">
         <Link href="/catalog" className="hover:text-pink-main">
           Головна
         </Link>
         <span>/</span>
-        <span className="text-pink-main">Каталог взуття</span>
+        <span className="text-pink-main ">Каталог взуття</span>
       </p>
 
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
-        <h1 className="font-bold text-xl tracking-[2px] uppercase md:text-2xl">Каталог взуття</h1>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-4 3x:items-end">
+        <h1 className="font-bold text-xl tracking-[2px] uppercase md:text-2xl 3xl:text-4xl 3xl:leading-11">
+          Каталог взуття
+        </h1>
 
-        <div className="hidden lg:block">
+        <div className="hidden 3xl:block 3xl:self-end">
           <SortDropdown />
         </div>
       </div>
 
-     <div className="mb-4 h-0 border-t border-black/20 -mx-4 md:-mx-6"></div>
+      <div className="mb-4 h-0 border-t border-black/20 -mx-4 md:-mx-6 3xl:mb-0 3xl:relative 3xl:mx-0 3xl:left-1/2 3xl:-translate-x-1/2 3xl:w-screen"></div>
 
-      <div className="mb-3 flex justify-between md:mb-4 lg:hidden">
-          <MobileFilterDrawer categoryCounts={data?.categoryCounts} total={total} />
-          <MobileSortSheet />
+      <div className="mb-3 flex justify-between md:mb-4 3xl:hidden">
+        <MobileFilterDrawer categoryCounts={data?.categoryCounts} total={total} />
+        <MobileSortSheet />
       </div>
 
       <ActiveFiltersBar />
 
-      <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
-        <div className="hidden lg:block">
+      <div className="grid gap-8 3xl:grid-cols-[333px_1fr] 3xl:mt-6 3xl:gap-12">
+        <div className="hidden 3xl:block">
           <FilterSidebar categoryCounts={data?.categoryCounts} />
         </div>
 
@@ -102,7 +104,7 @@ export function ProductCatalog() {
           {error ? (
             <ErrorState onRetry={refetch} />
           ) : isInitialLoading ? (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4 3xl:gap-6">
               {Array.from({ length: PAGE_SIZE }).map((_, index) => (
                 <ProductCardSkeleton key={index} />
               ))}
@@ -115,9 +117,19 @@ export function ProductCatalog() {
             />
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4 3xl:gap-6">
                 {items.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    imageClassName="3xl:w-89.25 3xl:h-112.25"
+                    infoClassName="3xl:p-3 "
+                    titleClassName="3xl:text-sm 3xl:font-medium 3xl:leading-[100%] 3xl:tracking-[0.5px]"
+                    descriptionClassName="3xl:text-[11px] 3xl:font-normal 3xl:leading-5 3xl:tracking-normal 3xl:whitespace-nowrap 3xl:h-auto"
+                    priceClassName="3xl:text-[15px] 3xl:font-medium 3xl:font-golos 3xl:leading-[100%] 3xl:tracking-normal"
+                    discountClassName="3xl:text-xs 3xl:font-golos"
+                    favoriteClassName="3xl:h-10 3xl:w-10 3xl:top-4 3xl:right-4"
+                  />
                 ))}
               </div>
               <LoadMoreButton

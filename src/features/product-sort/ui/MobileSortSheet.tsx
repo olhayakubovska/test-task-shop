@@ -17,7 +17,7 @@ export function MobileSortSheet() {
       <Button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="lg:hidden border w-55 border-pink-main py-2 px-4 gap-2 text-white-main font-golos text-xs leading-none h-7.5 md:w-58.75"
+        className="3xl:hidden border w-55 border-pink-main py-2 px-4 gap-2 text-white-main font-golos text-xs leading-none h-7.5 md:w-58.75"
       >
         <span className="text-grey-second whitespace-nowrap">
           Сортування:&nbsp; {current.label}
@@ -25,7 +25,7 @@ export function MobileSortSheet() {
       </Button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-end lg:hidden">
+        <div className="fixed inset-0 z-50 flex items-end 3xl:hidden">
           <button
             type="button"
             aria-label="Закрити сортування"

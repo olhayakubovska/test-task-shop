@@ -22,7 +22,7 @@ export function SliderProductCard({ product }: SliderProductCardProps) {
 
   return (
     <article className="group flex flex-col">
-      <div className="relative w-40 h-50.75 md:w-40.5 md:h-50.75 overflow-hidden bg-bg-muted">
+      <div className="relative w-40 h-50.75 md:w-40.5 md:h-50.75 3xl:w-full 3xl:h-auto 3xl:aspect-162/203 overflow-hidden bg-bg-muted">
         <Image
           src={product.image}
           alt={product.name}

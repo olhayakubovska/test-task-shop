@@ -39,9 +39,9 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
 
   return (
     <aside className="w-full">
-      <div className="border-t border-border -mx-4"></div>
+      <div className="border-t border-border -mx-4 3xl:relative 3xl:mx-0 3xl:left-1/2 3xl:-translate-x-1/2 3xl:hidden"></div>
 
-      <div className="flex flex-col gap-6 mt-4 mb-6">
+      <div className="flex flex-col gap-6 mt-4 mb-6 3xl:gap-8 3xl:mt-0">
         <FilterSection title="Категорії">
           {CATEGORY_OPTIONS.map((option) => (
             <Checkbox
@@ -89,7 +89,7 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
           ))}
         </FilterSection>
 
-        <FilterSection title="Колір">
+        <FilterSection title="Колір" noBorder>
           <div className="grid grid-cols-2 gap-3">
             {COLOR_OPTIONS.map((option) => (
               <ColorSwatch
@@ -103,7 +103,7 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
           </div>
         </FilterSection>
 
-        <FilterSection title="Ціна, грн" defaultOpen>
+        <FilterSection title="Ціна, грн" defaultOpen noBorder>
           <RangeSlider
             min={PRICE_RANGE.min}
             max={PRICE_RANGE.max}
@@ -111,7 +111,7 @@ export function FilterSidebar({ categoryCounts }: FilterSidebarProps) {
             value={priceValue}
             onChange={setPriceRange}
           />
-          <div className="flex items-center justify-between text-sm text-[#0D0D0D] leading-none font-medium">
+          <div className="flex items-center justify-between text-sm text-[#0D0D0D] leading-none font-medium 3xl:text-base">
             <span>{formatPrice(priceValue[0])}</span>
             <span>{formatPrice(priceValue[1])}</span>
           </div>

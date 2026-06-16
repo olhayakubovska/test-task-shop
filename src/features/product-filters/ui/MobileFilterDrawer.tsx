@@ -23,7 +23,7 @@ export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawer
     <>
       <Button
         onClick={() => setIsOpen(true)}
-        className="lg:hidden bg-pink-main py-2 h-7.5 px-8 gap-2 text-white-main font-golos font-semibold text-xs md:px-4 md:rounded-none md:w-34.5"
+        className="3xl:hidden bg-pink-main py-2 h-7.5 px-8 gap-2 text-white-main font-golos font-semibold text-xs md:px-4 md:rounded-none md:w-34.5"
       >
         <FilterIcon />
         <span className="font-semibold text-xs leading-none w-12">Фільтри</span>
@@ -31,7 +31,7 @@ export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawer
 
       <div
         className={cn(
-          "fixed inset-0 z-50 flex lg:hidden",
+          "fixed inset-0 z-50 flex 3xl:hidden",
           isOpen ? "pointer-events-auto" : "pointer-events-none"
         )}
       >

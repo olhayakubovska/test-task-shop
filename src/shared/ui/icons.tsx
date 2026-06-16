@@ -164,6 +164,14 @@ export function SortIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function ChevronFilterIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="7" viewBox="0 0 11 7" fill="none" {...props}>
+      <path d="M0.664368 5.33795L5.16437 1.33795L9.66437 5.33795" stroke="#0D0D0D" strokeWidth="2" />
+    </svg>
+  );
+}
+
 export function MenuIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>

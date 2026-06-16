@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { SORT_OPTIONS } from "@/shared/config/filters";
 import { useCatalogFilters } from "@/shared/lib/useCatalogFilters";
-import { ChevronDownIcon, ChevronUpIcon } from "@/shared/ui/icons";
 import { cn } from "@/shared/lib/cn";
 
 export function SortDropdown() {
@@ -17,13 +16,11 @@ export function SortDropdown() {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center gap-3 rounded-md border border-border px-4 py-2.5 text-sm cursor-pointer"
+        className="flex items-center gap-3 border-[0.5px] border-[#FF99D6] leading-4 px-4 py-2 text-sm cursor-pointer "
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className="text-text-muted">Сортування:</span>
-        <span className="font-semibold">{current.label}</span>
-        {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        <span className="text-[#0D0D0D]">Сортування: {current.label}</span>
       </button>
 
       {isOpen && (
@@ -50,7 +47,7 @@ export function SortDropdown() {
                   }}
                   className={cn(
                     "block w-full px-4 py-2.5 text-left text-sm hover:bg-bg-muted cursor-pointer",
-                    option.value === filters.sort && "font-semibold text-pink-main",
+                    option.value === filters.sort && "font-semibold text-pink-main"
                   )}
                 >
                   {option.label}

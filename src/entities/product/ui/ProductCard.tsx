@@ -11,9 +11,16 @@ import type { Product } from "@/entities/product/model/types";
 
 interface ProductCardProps {
   product: Product;
+  imageClassName?: string;
+  infoClassName?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+  priceClassName?: string;
+  discountClassName?: string;
+  favoriteClassName?: string;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, imageClassName, infoClassName, titleClassName, descriptionClassName, priceClassName, discountClassName, favoriteClassName }: ProductCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const hasDiscount = typeof product.discountPrice === "number";
   const discountPercent = hasDiscount
@@ -22,7 +29,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="group flex flex-col">
-      <div className="relative w-44 h-55.25 md:w-56 md:h-70.25 overflow-hidden bg-bg-muted">
+      <div className={cn("relative w-44 h-55.25 md:w-56 md:h-70.25 overflow-hidden bg-bg-muted", imageClassName)}>
         <Image
           src={product.image}
           alt={product.name}
@@ -37,36 +44,37 @@ export function ProductCard({ product }: ProductCardProps) {
           onClick={() => setIsFavorite((prev) => !prev)}
           className={cn(
             "absolute right-2 top-2 border-0 bg-white shadow-md w-7 h-7",
-            isFavorite && "text-pink-main"
+            isFavorite && "text-pink-main",
+            favoriteClassName
           )}
         >
           <HeartIcon filled={isFavorite} width={14} height={14} />
         </IconButton>
       </div>
 
-      <div className="flex items-center justify-between pt-2.75 pb-2 px-1 md:p-2">
+      <div className={cn("flex items-center justify-between pt-2.75 pb-2 px-1 md:p-2", infoClassName)}>
         <div className="flex flex-col gap-1 min-w-0 flex-1">
-          <h3 className="font-montserrat font-semibold text-[10px] leading-tight h-6 w-full max-w-25.25 tracking-[1px] uppercase overflow-hidden line-clamp-2 wrap-break-word md:h-auto md:max-w-none">
+          <h3 className={cn("font-montserrat font-semibold text-[10px] leading-tight h-6 w-full max-w-25.25 tracking-[1px] uppercase overflow-hidden line-clamp-2 wrap-break-word md:h-auto md:max-w-none", titleClassName)}>
             {product.name}
           </h3>
 
-          <p className="font-golos font-normal text-[8px] h-5 tracking-[1px] text-grey-text uppercase md:max-w-35.25 md:leading-2.5">
+          <p className={cn("font-golos font-normal text-[8px] h-5 tracking-[1px] text-grey-text uppercase md:max-w-35.25 md:leading-2.5", descriptionClassName)}>
             {product.line}
           </p>
         </div>
 
-        <div className="flex shrink-0 flex-col items-end justify-center  whitespace-nowrap">
+        <div className="flex shrink-0 flex-col items-end justify-center whitespace-nowrap">
           {hasDiscount ? (
             <>
-              <span className="text-[8px] text-dark-main line-through">
+              <span className={cn("text-[8px] text-dark-main line-through", discountClassName)}>
                 {formatPrice(product.price)}
               </span>
-              <span className="text-[13px] font-semibold text-pink-main leading-none">
+              <span className={cn("text-[13px] font-semibold text-pink-main leading-none", priceClassName)}>
                 {formatPrice(product.discountPrice!)}
               </span>
             </>
           ) : (
-            <span className="text-[13px] font-semibold">{formatPrice(product.price)}</span>
+            <span className={cn("text-[13px] font-semibold", priceClassName)}>{formatPrice(product.price)}</span>
           )}
         </div>
       </div>

@@ -9,7 +9,7 @@ export function Checkbox({ label, className, checked, ...props }: CheckboxProps)
   return (
     <label
       className={cn(
-        "flex cursor-pointer items-center gap-3 text-sm leading-none font-medium",
+        "flex cursor-pointer items-center gap-3 text-sm leading-none font-medium 3xl:text-base",
         checked ? "text-pink-main" : "text-foreground",
         className,
       )}
@@ -18,7 +18,7 @@ export function Checkbox({ label, className, checked, ...props }: CheckboxProps)
 
       <span
         className={cn(
-          "flex h-4.25 w-4.25 shrink-0 items-center justify-center  border transition-colors",
+          "flex h-4.25 w-4.25 shrink-0 items-center justify-center  border transition-colors 3xl:h-4.75  3xl:w-4.75",
           checked ? "border-pink-main bg-pink-main" : "border-border bg-background",
         )}
       >

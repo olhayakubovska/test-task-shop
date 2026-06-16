@@ -14,6 +14,10 @@
   --color-grey-second: rgba(61, 63, 60, 1);
 }
 
+@theme {
+  --breakpoint-3xl: 108rem;
+}
+
 @theme inline {
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
