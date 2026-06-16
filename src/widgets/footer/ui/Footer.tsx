@@ -27,7 +27,7 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-background">
-      <div className="relative mx-auto max-w-375 grid gap-6 px-4 pt-14 pb-5 md:px-6 md:gap-8 3xl:gap-25 3xl:grid-cols-[395px_200_200_200] 3xl:px-0 3xl:py-20">
+      <div className="relative mx-auto max-w-375 grid gap-6 px-4 pt-14 pb-5 md:px-6 md:gap-8 3xl:gap-25 3xl:grid-cols-[395px_200_200_200] 3xl:px-0 3xl:pt-20 3xl:pb-11.25">
         <div className="flex flex-col items-center gap-6 text-center  md:gap-4 3xl:items-start 3xl:text-left 3xl:mt-2">
           <Image src="/logo.svg" alt="World of Heels" width={155} height={48} />
 
