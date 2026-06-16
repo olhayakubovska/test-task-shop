@@ -1,20 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui/Button";
 import { CloseIcon, FilterIcon } from "@/shared/ui/icons";
-import { FilterSidebar } from "@/features/product-filters/ui/FilterSidebar";
-import { useActiveFilterChips } from "@/features/product-filters/model/useActiveFilterChips";
-import { useCatalogFilters } from "@/shared/lib/useCatalogFilters";
-interface MobileFilterDrawerProps {
-  total?: number;
-}
+import { FilterSidebar, type FilterSidebarHandle } from "@/features/product-filters/ui/FilterSidebar";
+import { getFilterChips } from "@/features/product-filters/model/getFilterChips";
+import { usePreviewCount } from "@/features/product-filters/model/usePreviewCount";
+import { useCatalogFilters, type CatalogFilters } from "@/shared/lib/useCatalogFilters";
 
-export function MobileFilterDrawer({ total }: MobileFilterDrawerProps) {
+export function MobileFilterDrawer() {
   const [isOpen, setIsOpen] = useState(false);
-  const { clearAll } = useCatalogFilters();
-  const { chips, removeFilter } = useActiveFilterChips();
+  const { clearAll, filters } = useCatalogFilters();
+  const sidebarRef = useRef<FilterSidebarHandle>(null);
+  const [pendingFilters, setPendingFilters] = useState<CatalogFilters>(filters);
+
+  const chips = getFilterChips(pendingFilters);
+  const previewCount = usePreviewCount(pendingFilters);
+
+  const handleApply = () => {
+    sidebarRef.current?.apply();
+    setIsOpen(false);
+  };
+
+  const handleClear = () => {
+    clearAll();
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -48,7 +60,7 @@ export function MobileFilterDrawer({ total }: MobileFilterDrawerProps) {
           )}
         >
           <div className="mb-3 flex items-center justify-between">
-            <h2 className="font-golos font-semibold text-sm  tracking-0.7 uppercase">Фільтрація</h2>
+            <h2 className="font-golos font-semibold text-sm tracking-0.7 uppercase">Фільтрація</h2>
             <button
               type="button"
               aria-label="Закрити"
@@ -60,56 +72,63 @@ export function MobileFilterDrawer({ total }: MobileFilterDrawerProps) {
           </div>
 
           {chips.length > 0 && (
-            <div className="border-t border-border pb-3 -mx-4" />
-          )}
-
-          {chips.length > 0 && (
-            <div className="mb-3">
-              <div className="mb-2 flex items-center justify-between">
-                <span className="font-montserrat font-bold text-[10px] tracking-[1px] uppercase">
-                  Обрано:
-                </span>
-                <button
-                  type="button"
-                  onClick={clearAll}
-                  className="font-montserrat font-bold text-[10px] tracking-[1px] uppercase underline decoration-solid"
-                >
-                  Очистити
-                </button>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-2">
-                {chips.map((chip) => (
+            <>
+              <div className="border-t border-border pb-3 -mx-4" />
+              <div className="mb-3">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="font-montserrat font-bold text-[10px] tracking-[1px] uppercase">
+                    Обрано:
+                  </span>
                   <button
-                    key={chip.key}
                     type="button"
-                    onClick={() => removeFilter(chip.key)}
-                    className="flex items-center gap-2 bg-[#9999991A] px-1 py-2 h-7 font-golos font-medium text-[10px]  tracking-normal cursor-pointer hover:border-foreground"
+                    onClick={handleClear}
+                    className="font-montserrat font-bold text-[10px] tracking-[1px] uppercase underline decoration-solid"
                   >
-                    {chip.label}
-                    <CloseIcon width={6} height={6} />
+                    Очистити
                   </button>
-                ))}
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  {chips.map((chip) => (
+                    <span
+                      key={chip.key}
+                      className="flex items-center gap-1 bg-[#9999991A] px-1 py-2 h-7 font-golos font-medium text-[10px] tracking-normal"
+                    >
+                      {chip.label}
+                      <button
+                        type="button"
+                        aria-label={`Видалити ${chip.label}`}
+                        onClick={() => sidebarRef.current?.removePending(chip.key)}
+                        className="ml-1 leading-none text-[#0D0D0D] hover:text-pink-main"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </>
           )}
 
-          <FilterSidebar />
+          <FilterSidebar
+            ref={sidebarRef}
+            showApplyButton={false}
+            onPendingChange={setPendingFilters}
+          />
 
-          <div className="border-t border-[#D9D9D9] mb-4 -mx-4"></div>
+          <div className="border-t border-[#D9D9D9] mb-4 -mx-4" />
 
-          <div className=" flex gap-2 ">
+          <div className="flex gap-2">
             <Button
-              onClick={clearAll}
+              onClick={handleClear}
               className="flex-1 border border-dark-main text-dark-main text-[10px] leading-2 font-semibold uppercase py-3"
             >
               Очистити
             </Button>
             <Button
-              onClick={() => setIsOpen(false)}
+              onClick={handleApply}
               className="flex-1 bg-dark-main text-white-main text-[10px] leading-2 font-semibold uppercase py-3"
             >
-              {total !== undefined ? `Показати (${total})` : "Показати товари"}
+              {previewCount !== null ? `Показати (${previewCount})` : "Показати товари"}
             </Button>
           </div>
         </div>

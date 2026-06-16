@@ -22,7 +22,7 @@ import type { CatalogCard } from "@/shared/api/types";
 export function ProductCatalog() {
   const { filters, clearAll, setPage } = useCatalogFilters();
   const { data, isLoading, error, refetch } = useProducts({
-    category: filters.category,
+    category: filters.categories[0],
     insoleSize: filters.insoleSize,
     heelHeight: filters.heelHeight,
     material: filters.material,
@@ -63,7 +63,7 @@ export function ProductCatalog() {
   const total = data?.meta.total ?? 0;
   const totalPages = data?.meta.pages ?? 1;
   const remaining = Math.min(PAGE_SIZE, Math.max(0, total - items.length));
-  const isInitialLoading = isLoading && items.length === 0;
+  const showSkeletons = isLoading && !isAppendPending;
   const isLoadingMore = isLoading && isAppendPending;
 
   return (
@@ -89,7 +89,7 @@ export function ProductCatalog() {
       <div className="mb-4 h-0 border-t border-black/20 -mx-4 md:-mx-6 3xl:mb-0 3xl:relative 3xl:mx-0 3xl:left-1/2 3xl:-translate-x-1/2 3xl:w-screen"></div>
 
       <div className="mb-3 flex justify-between md:mb-4 3xl:hidden">
-        <MobileFilterDrawer total={total} />
+        <MobileFilterDrawer />
         <MobileSortSheet />
       </div>
 
@@ -103,7 +103,7 @@ export function ProductCatalog() {
         <div>
           {error ? (
             <ErrorState onRetry={refetch} />
-          ) : isInitialLoading ? (
+          ) : showSkeletons ? (
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4 3xl:gap-6">
               {Array.from({ length: PAGE_SIZE }).map((_, index) => (
                 <ProductCardSkeleton key={index} />

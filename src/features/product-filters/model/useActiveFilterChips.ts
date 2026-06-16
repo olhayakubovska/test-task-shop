@@ -36,9 +36,12 @@ export function useActiveFilterChips() {
     const max = filters.maxPrice ?? PRICE_RANGE.max;
     chips.push({ key: "price", label: `Ціна: ${formatPrice(min)} – ${formatPrice(max)}` });
   }
-    if (filters.category) {
-    const option = CATEGORY_OPTIONS.find((item) => item.value === filters.category);
-    if (option) chips.push({ key: "category", label: `Категорія: ${option.label}` });
+  if (filters.categories.length > 0) {
+    const labels = filters.categories
+      .map((cat) => CATEGORY_OPTIONS.find((o) => o.value === cat)?.label)
+      .filter(Boolean)
+      .join(", ");
+    chips.push({ key: "category", label: `Категорія: ${labels}` });
   }
 
   return { chips, removeFilter };
