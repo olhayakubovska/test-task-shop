@@ -62,7 +62,9 @@ export function MobileFilterDrawer({ categoryCounts, total }: MobileFilterDrawer
             </button>
           </div>
 
-          <div className="border-t border-border pb-3 -mx-4"></div>
+          {chips.length > 0 && (
+            <div className="border-t border-border pb-3 -mx-4" />
+          )}
 
           {chips.length > 0 && (
             <div className="mb-3">
