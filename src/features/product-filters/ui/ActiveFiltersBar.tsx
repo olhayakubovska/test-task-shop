@@ -12,7 +12,7 @@ export function ActiveFiltersBar() {
 
   return (
     <div className="hidden flex-wrap items-center gap-2 border-b border-border py-2 lg:flex">
-      <span className="text-xs font-bold uppercase tracking-wide text-text-muted">Фільтри:</span>
+      <span className="text-xs font-bold uppercase tracking-wide h-[30px] text-text-muted">Фільтри:</span>
       {chips.map((chip) => (
         <button
           key={chip.key}

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CartIcon, MenuIcon, SearchIcon, UserIcon } from "@/shared/ui/icons";
+import { CartIcon, HeartIcon, MenuIcon, SearchIcon, UserIcon } from "@/shared/ui/icons";
 import { IconButton } from "@/shared/ui/IconButton";
 
 const NAV_LINKS = [
@@ -14,7 +14,7 @@ const NAV_LINKS = [
 export function Header() {
   return (
     <header className="border-b border-border bg-background">
-      <div className="mx-auto flex max-w-375 items-center justify-between gap-6 px-4.75 py-3">
+      <div className="mx-auto flex max-w-375 items-center justify-between gap-6 px-4.75 py-3 md:px-6 md:py-3.5">
         <Link href="/catalog" className="flex items-center">
           <Image
             src="/logo.svg"
@@ -41,6 +41,9 @@ export function Header() {
 
           <IconButton aria-label="Особистий кабінет" className="hidden md:flex">
             <UserIcon />
+          </IconButton>
+          <IconButton aria-label="Особистий кабінет" className="hidden md:flex">
+            <HeartIcon />
           </IconButton>
 
           <div className="relative">

@@ -15,7 +15,7 @@ export function LoadMoreButton({ onClick, isLoading, remaining }: LoadMoreButton
       <Button
         onClick={onClick}
         disabled={isLoading}
-        className="border border-dark-main bg-transparent font-medium tracking-[0.04em]  text-xs text-dark-main px-10 py-3"
+        className="w-full max-w-59.25 md:max-w-65.75 border border-dark-main bg-transparent font-medium tracking-[0.04em] text-xs text-dark-main px-10 py-3 rounded-none md:text-sm md:leading-none md:h-10.25"
       >
         {isLoading ? <Spinner className="h-4 w-4" /> : `Показати ще ${remaining} товари`}
       </Button>

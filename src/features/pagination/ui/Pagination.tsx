@@ -36,7 +36,7 @@ export function Pagination({ totalPages, onPageChange }: PaginationProps) {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-center gap-6 mt-4 text-sm whitespace-nowrap mx-auto max-w-76.25 " aria-label="Пагінація">
+    <nav className="flex flex-wrap items-center justify-center gap-6 mt-4 text-sm whitespace-nowrap mx-auto max-w-76.25 md:mt-6" aria-label="Пагінація">
       <button
         type="button"
         onClick={() => goTo(currentPage - 1)}

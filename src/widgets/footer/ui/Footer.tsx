@@ -27,11 +27,11 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-background">
-      <div className="relative mx-auto grid gap-6 px-4 pt-14 pb-5 sm:px-6 lg:grid-cols-4 lg:px-8">
-        <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
+      <div className="relative mx-auto grid gap-6 px-4 pt-14 pb-5 md:px-6 md:gap-8 lg:grid-cols-4 lg:px-8">
+        <div className="flex flex-col items-center gap-6 text-center  md:gap-4 lg:items-start lg:text-left">
           <Image src="/logo.svg" alt="World of Heels" width={155} height={48} />
 
-          <p className="max-w-92 text-sm text-grey-text font-montserrat mt-1.5 leading-4">
+          <p className="max-w-92 text-sm text-grey-text font-montserrat mt-1.5 leading-4 md:max-w-133.5 md:h-15 md:text-base md:leading-5">
             WOH — це синергія високих технологій та професійної майстерності. Ми перетворюємо
             складну конструкцію на легкість вашого танцю.
           </p>
@@ -50,12 +50,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 items-center justify-center">
+        <div className="relative grid grid-cols-1 gap-6 md:grid-cols-3 md:items-start lg:col-span-3">
           <div>
-            <h3 className="mb-4 font-montserrat font-bold text-xs  tracking-[2px] uppercase text-grey-text">
+            <h3 className="mb-4 font-montserrat font-bold text-xs tracking-[2px] uppercase text-grey-text text-center md:text-left">
               Каталог
             </h3>
-            <ul className="flex flex-col gap-2 justify-center items-center text-[15px] font-medium">
+            <ul className="flex flex-col gap-2 items-center md:items-start text-[15px] font-medium md:leading-5 md:px-4 md:gap-4">
               {CATALOG_LINKS.map((link) => (
                 <li key={link}>
                   <Link
@@ -71,10 +71,10 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 font-montserrat font-bold text-xs leading-2  text-center tracking-[2px] uppercase text-grey-text">
+            <h3 className="mb-4 font-montserrat font-bold text-xs leading-2 tracking-[2px] uppercase text-grey-text text-center md:text-left">
               Компанія
             </h3>
-            <ul className="flex flex-col gap-2 justify-center items-center text-[15px] font-medium">
+            <ul className="flex flex-col gap-2 items-center md:items-start text-[15px] font-medium md:leading-5 md:px-4 md:gap-4">
               {COMPANY_LINKS.map((link) => (
                 <li key={link}>
                   <Link
@@ -89,11 +89,11 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="relative">
-            <h3 className="relative z-10 mb-4 font-montserrat  leading-2 font-bold text-xs text-center tracking-[2px] uppercase text-grey-text">
+          <div className="relative z-10">
+            <h3 className="mb-4 font-montserrat leading-2 font-bold text-xs tracking-[2px] uppercase text-grey-text text-center md:text-left">
               Зв&apos;язок
             </h3>
-            <ul className="relative z-10 flex flex-col gap-2 justify-center items-center text-[15px] font-medium">
+            <ul className="flex flex-col gap-2 items-center md:items-start text-[15px] font-medium md:leading-5 md:px-4 md:gap-4">
               <li>woh_support@gmail.com</li>
               <li>+38 (067) 967 01 63</li>
               <li>
@@ -102,23 +102,23 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-            <Image
-              src="/footer-heels.svg"
-              alt=""
-              aria-hidden
-              width={420}
-              height={110}
-              className="pointer-events-none absolute left-1/2 bottom-1 z-0 t  max-w-none -translate-x-1/2 select-none opacity-20"
-            />
           </div>
+          <Image
+            src="/footer-heels.svg"
+            alt=""
+            aria-hidden
+            width={420}
+            height={110}
+            className="pointer-events-none absolute left-1/2 bottom-1 z-0 max-w-none -translate-x-1/2 select-none opacity-20 md:left-0 md:translate-x-0 md:w-full md:max-w-full md:h-auto md:-mx-6"
+          />
         </div>
       </div>
 
-      <div className="relative mx-auto flex  flex-col items-center gap-6 border-t border-border px-4 py-6 text-center text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between sm:text-left sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex flex-col items-center gap-6 border-t border-border px-4 py-6 text-center text-xs text-text-muted sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:text-left lg:px-8">
         <span className="text-[#64748B] font-golos font-semibold text-[12px] leading-[100%] tracking-[1px] uppercase">
           © 2026 Structure Lab. Всі права захищені
         </span>
-        <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-4 text-[#0D0D0D] ">
+        <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-4 text-[#0D0D0D]">
           <Link
             href="#"
             className="font-golos font-medium text-xs tracking-[1px] text-center uppercase"

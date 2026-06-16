@@ -67,7 +67,7 @@ export function ProductCatalog() {
   const isLoadingMore = isLoading && isAppendPending;
 
   return (
-    <div className="mx-auto max-w-375 px-4 pt-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-375 px-4 md:px-6 pt-4 lg:px-8">
       <p className="font-semibold text-[10px] leading-[100%] flex gap-1.5 tracking-[2px] text-grey-text mb-4 uppercase">
         <Link href="/catalog" className="hover:text-pink-main">
           Головна
@@ -77,18 +77,22 @@ export function ProductCatalog() {
       </p>
 
       <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
-        <h1 className="font-bold text-xl tracking-[2px] uppercase">Каталог взуття</h1>
+        <h1 className="font-bold text-xl tracking-[2px] uppercase md:text-2xl">Каталог взуття</h1>
 
         <div className="hidden lg:block">
           <SortDropdown />
         </div>
       </div>
 
-      <div className="mb-4 h-0 border-t border-black/20 -mx-4"></div>
+     <div className="mb-4 h-0 border-t border-black/20 -mx-4 md:-mx-6"></div>
 
-      <div className="mb-3 flex items-center gap-3  lg:hidden">
-        <MobileFilterDrawer categoryCounts={data?.categoryCounts} total={total} />
-        <MobileSortSheet />
+      <div className="mb-3 flex items-stretch md:justify-between md:mb-4 lg:hidden">
+        <div className="basis-[30%] md:basis-0">
+          <MobileFilterDrawer categoryCounts={data?.categoryCounts} total={total} />
+        </div>
+        <div className="basis-[70%]  md:basis-0">
+          <MobileSortSheet />
+        </div>
       </div>
 
       <ActiveFiltersBar />
@@ -102,7 +106,7 @@ export function ProductCatalog() {
           {error ? (
             <ErrorState onRetry={refetch} />
           ) : isInitialLoading ? (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4">
               {Array.from({ length: PAGE_SIZE }).map((_, index) => (
                 <ProductCardSkeleton key={index} />
               ))}
@@ -111,15 +115,11 @@ export function ProductCatalog() {
             <EmptyState
               title="Товарів не знайдено"
               description="Спробуйте змінити або скинути фільтри, щоб побачити більше товарів."
-              action={
-                <Button onClick={clearAll}>
-                  Очистити фільтри
-                </Button>
-              }
+              action={<Button onClick={clearAll}>Очистити фільтри</Button>}
             />
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4">
                 {items.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
