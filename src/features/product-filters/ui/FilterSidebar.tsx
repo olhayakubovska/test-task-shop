@@ -1,6 +1,12 @@
 "use client";
 
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   CATEGORY_OPTIONS,
@@ -44,7 +50,10 @@ interface FilterSidebarProps {
 export const FilterSidebar = forwardRef<
   FilterSidebarHandle,
   FilterSidebarProps
->(function FilterSidebar({ showApplyButton = true, autoApply = false, onPendingChange }, ref) {
+>(function FilterSidebar(
+  { showApplyButton = true, autoApply = false, onPendingChange },
+  ref,
+) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
