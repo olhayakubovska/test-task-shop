@@ -105,20 +105,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 z-0 select-none whitespace-nowrap overflow-hidden">
-          <span
-            aria-hidden
-            style={{
-              fontFamily: "var(--font-urbanist)",
-              fontWeight: 700,
-              fontSize: "315px",
-              lineHeight: "100%",
-              letterSpacing: "-10px",
-              color: "#9999990D",
-            }}
-          >
-            HIGH HEELS
-          </span>
+        <div className="pointer-events-none absolute bottom-0 left-30  text-[150px]  3xl:left-0 z-0 select-none whitespace-nowrap -translate-x-108.75 font-(family-name:--font-urbanist) font-bold md:text-[315px] leading-none tracking-[-10px] text-[#9999990D]">
+          HIGH HEELS
         </div>
       </div>
 
