@@ -4,16 +4,21 @@ import { useEffect, useState } from "react";
 import { fetchCatalogCards } from "@/shared/api/catalog";
 import { ProductCard } from "@/entities/product/ui/ProductCard";
 import { SliderProductCard } from "@/entities/product/ui/SliderProductCard";
+import { ErrorState } from "@/shared/ui/ErrorState";
 import type { CatalogCard } from "@/shared/api/types";
 
 export function RecommendedProducts() {
   const [items, setItems] = useState<CatalogCard[]>([]);
+  const [error, setError] = useState(false);
 
-  useEffect(() => {
+  const load = () => {
+    setError(false);
     fetchCatalogCards({ limit: 8, sort: "updated_desc" })
       .then((res) => setItems(res.items))
-      .catch(() => {});
-  }, []);
+      .catch(() => setError(true));
+  };
+
+  useEffect(() => { load(); }, []);
 
   const mobileItems = items.slice(0, 2);
   const sliderItems = items.slice(0, 8);
@@ -28,6 +33,8 @@ export function RecommendedProducts() {
       <h2 className="mb-4 text-xl font-extrabold uppercase tracking-[1px] sm:text-4xl md:text-2xl md:leading-9 3xl:text-4xl 3xl:mt-1 3xl:mb-7 ">
         Рекомендовані товари
       </h2>
+
+      {error && <ErrorState onRetry={load} />}
 
       <div className="grid grid-cols-2 gap-4 md:hidden">
         {mobileItems.map((product) => (
