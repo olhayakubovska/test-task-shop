@@ -27,7 +27,7 @@ export function ColorSwatch({
       <span
         className={cn(
           "h-4.25 w-4.25 3xl:h-4.75 3xl:w-4.75",
-          hex.toUpperCase() === "#FFFFFF" && "border border-border",
+          active ? "outline-2 outline-offset-1 outline-dark-main" : hex.toUpperCase() === "#FFFFFF" && "border border-border",
         )}
         style={{ backgroundColor: hex }}
         aria-hidden

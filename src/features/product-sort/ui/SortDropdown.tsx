@@ -35,7 +35,7 @@ export function SortDropdown() {
           />
           <ul
             role="listbox"
-            className="absolute right-0 z-20 mt-2 w-64 overflow-hidden rounded-md border border-border bg-background shadow-lg"
+            className="absolute right-0 z-20 mt-2 w-64 overflow-hidden rounded-md border border-border bg-white shadow-lg"
           >
             {SORT_OPTIONS.map((option) => (
               <li key={option.value}>
