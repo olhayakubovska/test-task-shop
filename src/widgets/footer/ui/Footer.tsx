@@ -123,7 +123,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 left-30 z-0 -translate-x-108.75 font-(family-name:--font-urbanist) text-[150px] leading-none font-bold tracking-[-10px] whitespace-nowrap text-[#9999990D] select-none md:text-[315px] 3xl:left-0">
+        <div className="pointer-events-none absolute bottom-0 left-30 z-0 -translate-x-108.75 font-(family-name:--font-urbanist) text-[150px] leading-none font-bold tracking-[-10px] whitespace-nowrap text-[#9999990D] select-none md:text-[315px] 3xl:left-90">
           HIGH HEELS
         </div>
       </div>
