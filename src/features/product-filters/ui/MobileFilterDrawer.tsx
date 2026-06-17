@@ -24,8 +24,8 @@ export function MobileFilterDrawer() {
   };
 
   const handleClear = () => {
+    sidebarRef.current?.reset();
     clearAll();
-    setIsOpen(false);
   };
 
   return (

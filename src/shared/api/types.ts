@@ -42,6 +42,18 @@ export type ProductColor = "black" | "white" | "pink" | "beige" | "shokolad" | "
 export type ProductMaterial = "leather" | "satin" | "synthetic" | "premium-suede" | "microfiber";
 export type HeelHeight = "7" | "9" | "9-5" | "10" | "11";
 
+export interface BreadcrumbCategory {
+  _id: string;
+  slug: string;
+  title: LocalizedText;
+  ancestors: BreadcrumbCategory[];
+  path: string[];
+}
+
+export interface BreadcrumbsResponse {
+  items: BreadcrumbCategory[];
+}
+
 export interface CatalogQuery {
   categoryId?: string;
   priceMin?: number;

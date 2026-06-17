@@ -35,7 +35,7 @@ export function RecommendedProducts() {
         ))}
       </div>
 
-      <div className="hidden md:flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [&::-webkit-scrollbar]:hidden md:pb-0 3xl:hidden">
+      <div className="hidden md:flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [&::-webkit-scrollbar]:hidden md:pb-0 -mr-6 3xl:hidden">
         {sliderItems.map((product) => (
           <div key={product.groupId} className="snap-start shrink-0 w-40.5">
             <SliderProductCard product={product} />

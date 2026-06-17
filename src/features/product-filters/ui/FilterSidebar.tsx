@@ -24,6 +24,7 @@ import type { ChipKey } from "@/features/product-filters/model/getFilterChips";
 export interface FilterSidebarHandle {
   apply: () => void;
   removePending: (key: ChipKey) => void;
+  reset: () => void;
 }
 
 interface FilterSidebarProps {
@@ -96,7 +97,9 @@ export const FilterSidebar = forwardRef<FilterSidebarHandle, FilterSidebarProps>
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
-    useImperativeHandle(ref, () => ({ apply: applyFilters, removePending }));
+    const reset = () => setPending({ categories: [], sort: "updated_desc", page: 1 });
+
+    useImperativeHandle(ref, () => ({ apply: applyFilters, removePending, reset }));
 
     const priceValue: [number, number] = [
       pending.minPrice ?? PRICE_RANGE.min,

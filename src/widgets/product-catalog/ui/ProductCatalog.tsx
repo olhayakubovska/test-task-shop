@@ -17,10 +17,12 @@ import { EmptyState } from "@/shared/ui/EmptyState";
 import { ErrorState } from "@/shared/ui/ErrorState";
 import { Button } from "@/shared/ui/Button";
 import { useCatalogFilters } from "@/shared/lib/useCatalogFilters";
+import { useBreadcrumbs } from "@/shared/lib/useBreadcrumbs";
 import type { CatalogCard } from "@/shared/api/types";
 
 export function ProductCatalog() {
   const { filters, clearAll, setPage } = useCatalogFilters();
+  const breadcrumbs = useBreadcrumbs(filters.categories[0]);
   const { data, isLoading, error, refetch } = useProducts({
     category: filters.categories[0],
     insoleSize: filters.insoleSize,
@@ -69,11 +71,20 @@ export function ProductCatalog() {
   return (
     <div className="mx-auto max-w-375 px-4 md:px-6 pt-4 3xl:px-0 3xl:pt-5">
       <p className="font-semibold text-[10px] leading-[100%] flex gap-1.5 tracking-[2px] text-grey-text mb-4 uppercase">
-        <Link href="/catalog" className="hover:text-pink-main">
-          Головна
-        </Link>
-        <span>/</span>
-        <span className="text-pink-main ">Каталог взуття</span>
+        {breadcrumbs.map((crumb, i) => (
+          <span key={i} className="flex items-center gap-1.5">
+            {i > 0 && <span>/</span>}
+            {crumb.href && i < breadcrumbs.length - 1 ? (
+              <Link href={crumb.href} className="hover:text-pink-main">
+                {crumb.label}
+              </Link>
+            ) : (
+              <span className={i === breadcrumbs.length - 1 ? "text-pink-main" : ""}>
+                {crumb.label}
+              </span>
+            )}
+          </span>
+        ))}
       </p>
 
       <div className="mb-4 flex flex-wrap items-center justify-between gap-4 3x:items-end">

@@ -1,6 +1,16 @@
-import type { CatalogCardsResponse, CatalogQuery } from "./types";
+import type { BreadcrumbCategory, CatalogCardsResponse, CatalogQuery } from "./types";
 
 const BASE_URL = "http://test-woh.keykey.com.ua/v1";
+
+export async function fetchBreadcrumbs(categoryId: string): Promise<BreadcrumbCategory[]> {
+  const res = await fetch(
+    `${BASE_URL}/catalog/categories/breadcrumbs?categoryId=${categoryId}`,
+    { cache: "no-store" }
+  );
+  if (!res.ok) throw new Error(`API error ${res.status}`);
+  const data = await res.json();
+  return data.items as BreadcrumbCategory[];
+}
 
 export async function fetchCatalogCards(query: CatalogQuery): Promise<CatalogCardsResponse> {
   const params = new URLSearchParams();
