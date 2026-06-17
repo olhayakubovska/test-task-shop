@@ -3,11 +3,11 @@ import Link from "next/link";
 import {
   CartIcon,
   HeartIcon,
-  MenuIcon,
   SearchIcon,
   UserIcon,
 } from "@/shared/ui/icons";
 import { IconButton } from "@/shared/ui/IconButton";
+import { BurgerMenu } from "@/widgets/header/ui/BurgerMenu";
 
 const NAV_LINKS = [
   { href: "/catalog", label: "Каталог" },
@@ -65,9 +65,7 @@ export function Header() {
             </span>
           </div>
 
-          <IconButton aria-label="Меню" className="3xl:hidden">
-            <MenuIcon />
-          </IconButton>
+          <BurgerMenu />
 
           <span className="hidden h-6 items-center gap-10 border-l-[0.5px] border-[#0D0D0D] pl-[16.5px] font-montserrat text-[13px] leading-[100%] font-medium tracking-[1.5px] uppercase 3xl:flex">
             UA
