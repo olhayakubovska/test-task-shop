@@ -70,7 +70,17 @@ export const FilterSidebar = forwardRef<
 
   useEffect(() => {
     setPending(parseCatalogFilters(searchParams));
-  }, [searchParams.get("sort"), searchParams.get("page")]);
+  }, [
+    searchParams.get("sort"),
+    searchParams.get("page"),
+    searchParams.get("category"),
+    searchParams.get("size"),
+    searchParams.get("heel"),
+    searchParams.get("material"),
+    searchParams.get("color"),
+    searchParams.get("minPrice"),
+    searchParams.get("maxPrice"),
+  ]);
 
   useEffect(() => {
     if (!autoApply || !userChangedRef.current) return;
