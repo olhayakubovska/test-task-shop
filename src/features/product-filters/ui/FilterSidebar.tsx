@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   CATEGORY_OPTIONS,
@@ -37,13 +37,14 @@ export interface FilterSidebarHandle {
 
 interface FilterSidebarProps {
   showApplyButton?: boolean;
+  autoApply?: boolean;
   onPendingChange?: (pending: CatalogFilters) => void;
 }
 
 export const FilterSidebar = forwardRef<
   FilterSidebarHandle,
   FilterSidebarProps
->(function FilterSidebar({ showApplyButton = true, onPendingChange }, ref) {
+>(function FilterSidebar({ showApplyButton = true, autoApply = false, onPendingChange }, ref) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -51,6 +52,8 @@ export const FilterSidebar = forwardRef<
   const [pending, setPending] = useState<CatalogFilters>(
     parseCatalogFilters(searchParams),
   );
+
+  const userChangedRef = useRef(false);
 
   useEffect(() => {
     onPendingChange?.(pending);
@@ -60,7 +63,14 @@ export const FilterSidebar = forwardRef<
     setPending(parseCatalogFilters(searchParams));
   }, [searchParams.get("sort"), searchParams.get("page")]);
 
+  useEffect(() => {
+    if (!autoApply || !userChangedRef.current) return;
+    userChangedRef.current = false;
+    applyFilters();
+  }, [pending]);
+
   const toggleCategory = (cat: CategorySlug) => {
+    userChangedRef.current = true;
     setPending((p) => ({
       ...p,
       categories: p.categories.includes(cat)
@@ -73,6 +83,7 @@ export const FilterSidebar = forwardRef<
     key: keyof Omit<CatalogFilters, "categories" | "sort" | "page">,
     value: T,
   ) => {
+    userChangedRef.current = true;
     setPending((p) => ({ ...p, [key]: p[key] === value ? undefined : value }));
   };
 

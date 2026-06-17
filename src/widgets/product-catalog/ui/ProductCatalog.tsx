@@ -110,7 +110,7 @@ export function ProductCatalog() {
 
       <div className="grid gap-8 3xl:mt-6 3xl:grid-cols-[333px_1fr] 3xl:gap-12">
         <div className="hidden 3xl:block">
-          <FilterSidebar />
+          <FilterSidebar autoApply />
         </div>
 
         <div>
