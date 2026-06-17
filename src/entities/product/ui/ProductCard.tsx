@@ -37,8 +37,8 @@ export function ProductCard({
     <article className="group flex flex-col">
       <div
         className={cn(
-          "relative w-44 h-55.25 md:w-56 md:h-70.25 overflow-hidden bg-bg-muted",
-          imageClassName
+          "relative h-55.25 w-44 overflow-hidden bg-bg-muted md:h-70.25 md:w-56",
+          imageClassName,
         )}
       >
         <Image
@@ -54,9 +54,9 @@ export function ProductCard({
           aria-pressed={isFavorite}
           onClick={() => setIsFavorite((prev) => !prev)}
           className={cn(
-            "absolute right-2 top-2 border-0 bg-white shadow-md w-7 h-7 md:w-8 md:h-8 md:top-3 md:right-3",
+            "absolute top-2 right-2 h-7 w-7 border-0 bg-white shadow-md md:top-3 md:right-3 md:h-8 md:w-8",
             isFavorite && "text-pink-main",
-            favoriteClassName
+            favoriteClassName,
           )}
         >
           <HeartIcon filled={isFavorite} width={14} height={14} />
@@ -65,15 +65,15 @@ export function ProductCard({
 
       <div
         className={cn(
-          "flex items-center justify-between pt-2.75 pb-2 px-1  md:p-2",
-          infoClassName
+          "flex items-center justify-between px-1 pt-2.75 pb-2 md:p-2",
+          infoClassName,
         )}
       >
-        <div className="flex flex-col gap-1 min-w-0 flex-1">
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
           <h3
             className={cn(
-              "font-montserrat font-semibold text-[10px] leading-3 tracking-[1px] uppercase line-clamp-2 md:line-clamp-1",
-              titleClassName
+              "line-clamp-2 font-montserrat text-[10px] leading-3 font-semibold tracking-[1px] uppercase md:line-clamp-1",
+              titleClassName,
             )}
           >
             {name}
@@ -81,8 +81,8 @@ export function ProductCard({
 
           <p
             className={cn(
-              "font-golos font-normal text-[8px] tracking-[1px] leading-2.5 text-grey-text uppercase line-clamp-2 3xl:line-clamp-1",
-              descriptionClassName
+              "line-clamp-2 font-golos text-[8px] leading-2.5 font-normal tracking-[1px] text-grey-text uppercase 3xl:line-clamp-1",
+              descriptionClassName,
             )}
           >
             {subtitle}

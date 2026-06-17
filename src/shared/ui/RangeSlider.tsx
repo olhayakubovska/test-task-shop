@@ -6,7 +6,13 @@ interface RangeSliderProps {
   onChange: (value: [number, number]) => void;
 }
 
-export function RangeSlider({ min, max, step = 1, value, onChange }: RangeSliderProps) {
+export function RangeSlider({
+  min,
+  max,
+  step = 1,
+  value,
+  onChange,
+}: RangeSliderProps) {
   const [from, to] = value;
 
   const handleFromChange = (next: number) => {

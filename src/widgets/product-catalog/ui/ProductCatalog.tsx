@@ -69,8 +69,8 @@ export function ProductCatalog() {
   const isLoadingMore = isLoading && isAppendPending;
 
   return (
-    <div className="mx-auto max-w-375 px-4 md:px-6 pt-4 3xl:px-0 3xl:pt-5">
-      <p className="font-semibold text-[10px] leading-[100%] flex gap-1.5 tracking-[2px] text-grey-text mb-4 uppercase">
+    <div className="mx-auto max-w-375 px-4 pt-4 md:px-6 3xl:px-0 3xl:pt-5">
+      <p className="mb-4 flex gap-1.5 text-[10px] leading-[100%] font-semibold tracking-[2px] text-grey-text uppercase">
         {breadcrumbs.map((crumb, i) => (
           <span key={i} className="flex items-center gap-1.5">
             {i > 0 && <span>/</span>}
@@ -79,7 +79,9 @@ export function ProductCatalog() {
                 {crumb.label}
               </Link>
             ) : (
-              <span className={i === breadcrumbs.length - 1 ? "text-pink-main" : ""}>
+              <span
+                className={i === breadcrumbs.length - 1 ? "text-pink-main" : ""}
+              >
                 {crumb.label}
               </span>
             )}
@@ -87,8 +89,8 @@ export function ProductCatalog() {
         ))}
       </p>
 
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-4 3x:items-end">
-        <h1 className="font-bold text-xl tracking-[2px] uppercase md:text-2xl 3xl:text-4xl 3xl:leading-11">
+      <div className="3x:items-end mb-4 flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-xl font-bold tracking-[2px] uppercase md:text-2xl 3xl:text-4xl 3xl:leading-11">
           Каталог взуття
         </h1>
 
@@ -97,7 +99,7 @@ export function ProductCatalog() {
         </div>
       </div>
 
-      <div className="mb-4 h-0 border-t border-black/20 -mx-4 md:-mx-6 3xl:mb-0 3xl:relative 3xl:mx-0 3xl:left-1/2 3xl:-translate-x-1/2 3xl:w-screen"></div>
+      <div className="-mx-4 mb-4 h-0 border-t border-black/20 md:-mx-6 3xl:relative 3xl:left-1/2 3xl:mx-0 3xl:mb-0 3xl:w-screen 3xl:-translate-x-1/2"></div>
 
       <div className="mb-3 flex justify-between md:mb-4 3xl:hidden">
         <MobileFilterDrawer />
@@ -106,7 +108,7 @@ export function ProductCatalog() {
 
       <ActiveFiltersBar />
 
-      <div className="grid gap-8 3xl:grid-cols-[333px_1fr] 3xl:mt-6 3xl:gap-12">
+      <div className="grid gap-8 3xl:mt-6 3xl:grid-cols-[333px_1fr] 3xl:gap-12">
         <div className="hidden 3xl:block">
           <FilterSidebar />
         </div>
@@ -115,7 +117,7 @@ export function ProductCatalog() {
           {error ? (
             <ErrorState onRetry={refetch} />
           ) : showSkeletons ? (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4 3xl:gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6 md:gap-y-4 3xl:gap-6">
               {Array.from({ length: PAGE_SIZE }).map((_, index) => (
                 <ProductCardSkeleton key={index} />
               ))}
@@ -128,7 +130,7 @@ export function ProductCatalog() {
             />
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6  md:gap-y-4 3xl:gap-6">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-x-6 md:gap-y-4 3xl:gap-6">
                 {items.map((product) => (
                   <ProductCard
                     key={product.groupId}
@@ -148,7 +150,10 @@ export function ProductCatalog() {
                 remaining={remaining}
               />
 
-              <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
+              <Pagination
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             </>
           )}
         </div>

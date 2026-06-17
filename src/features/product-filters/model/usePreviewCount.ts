@@ -14,7 +14,8 @@ export function usePreviewCount(pending: CatalogFilters): number | null {
   useEffect(() => {
     const timer = setTimeout(() => {
       const char: Record<string, string> = {};
-      if (pending.insoleSize) char["insoleSize"] = insoleSizeToApiKey(pending.insoleSize);
+      if (pending.insoleSize)
+        char["insoleSize"] = insoleSizeToApiKey(pending.insoleSize);
       if (pending.heelHeight) char["heelHeight"] = pending.heelHeight;
       if (pending.material) char["material"] = pending.material;
       if (pending.color) char["color"] = pending.color;
@@ -23,8 +24,14 @@ export function usePreviewCount(pending: CatalogFilters): number | null {
 
       fetchCatalogCards({
         categoryId: firstCategory ? CATEGORY_ID_MAP[firstCategory] : undefined,
-        priceMin: pending.minPrice && pending.minPrice > PRICE_RANGE.min ? pending.minPrice : undefined,
-        priceMax: pending.maxPrice && pending.maxPrice < PRICE_RANGE.max ? pending.maxPrice : undefined,
+        priceMin:
+          pending.minPrice && pending.minPrice > PRICE_RANGE.min
+            ? pending.minPrice
+            : undefined,
+        priceMax:
+          pending.maxPrice && pending.maxPrice < PRICE_RANGE.max
+            ? pending.maxPrice
+            : undefined,
         char: Object.keys(char).length > 0 ? char : undefined,
         limit: 1,
       })

@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CartIcon, HeartIcon, MenuIcon, SearchIcon, UserIcon } from "@/shared/ui/icons";
+import {
+  CartIcon,
+  HeartIcon,
+  MenuIcon,
+  SearchIcon,
+  UserIcon,
+} from "@/shared/ui/icons";
 import { IconButton } from "@/shared/ui/IconButton";
 
 const NAV_LINKS = [
@@ -26,9 +32,13 @@ export function Header() {
           />
         </Link>
 
-        <nav className="font-montserrat hidden items-center gap-10 text-[13px] font-medium uppercase  leading-[100%] tracking-[1.5px] 3xl:flex">
+        <nav className="hidden items-center gap-10 font-montserrat text-[13px] leading-[100%] font-medium tracking-[1.5px] uppercase 3xl:flex">
           {NAV_LINKS.map((link) => (
-            <Link key={link.label} href={link.href} className="hover:text-pink-main">
+            <Link
+              key={link.label}
+              href={link.href}
+              className="hover:text-pink-main"
+            >
               {link.label}
             </Link>
           ))}
@@ -50,7 +60,7 @@ export function Header() {
             <IconButton aria-label="Кошик">
               <CartIcon />
             </IconButton>
-            <span className="absolute -right-2 -top-2 flex h-4 w-5.5 items-center justify-center rounded-full bg-pink-main text-[8px] font-bold text-black">
+            <span className="absolute -top-2 -right-2 flex h-4 w-5.5 items-center justify-center rounded-full bg-pink-main text-[8px] font-bold text-black">
               10
             </span>
           </div>
@@ -59,9 +69,7 @@ export function Header() {
             <MenuIcon />
           </IconButton>
 
-
-
-          <span className="font-montserrat hidden items-center gap-10 text-[13px] font-medium uppercase leading-[100%] tracking-[1.5px] border-l-[0.5px] border-[#0D0D0D] h-6 pl-[16.5px] 3xl:flex">
+          <span className="hidden h-6 items-center gap-10 border-l-[0.5px] border-[#0D0D0D] pl-[16.5px] font-montserrat text-[13px] leading-[100%] font-medium tracking-[1.5px] uppercase 3xl:flex">
             UA
           </span>
         </div>

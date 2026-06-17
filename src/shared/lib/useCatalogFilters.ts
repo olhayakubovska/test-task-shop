@@ -9,7 +9,13 @@ import {
   PRICE_RANGE,
   SORT_OPTIONS,
 } from "@/shared/config/filters";
-import type { CategorySlug, HeelHeight, ProductColor, ProductMaterial, SortOption } from "@/shared/api/types";
+import type {
+  CategorySlug,
+  HeelHeight,
+  ProductColor,
+  ProductMaterial,
+  SortOption,
+} from "@/shared/api/types";
 
 export interface CatalogFilters {
   categories: CategorySlug[];
@@ -29,7 +35,9 @@ const MATERIAL_VALUES = new Set(MATERIAL_OPTIONS.map((o) => o.value));
 const COLOR_VALUES = new Set(COLOR_OPTIONS.map((o) => o.value));
 const SORT_VALUES = new Set(SORT_OPTIONS.map((o) => o.value));
 
-export function parseCatalogFilters(searchParams: URLSearchParams): CatalogFilters {
+export function parseCatalogFilters(
+  searchParams: URLSearchParams,
+): CatalogFilters {
   const categoryRaw = searchParams.get("category") ?? "";
   const categories = categoryRaw
     .split(",")
@@ -47,7 +55,8 @@ export function parseCatalogFilters(searchParams: URLSearchParams): CatalogFilte
 
   return {
     categories,
-    insoleSize: insoleSize && !isNaN(Number(insoleSize)) ? Number(insoleSize) : undefined,
+    insoleSize:
+      insoleSize && !isNaN(Number(insoleSize)) ? Number(insoleSize) : undefined,
     heelHeight:
       heelHeight && HEEL_VALUES.has(heelHeight as HeelHeight)
         ? (heelHeight as HeelHeight)
@@ -57,10 +66,15 @@ export function parseCatalogFilters(searchParams: URLSearchParams): CatalogFilte
         ? (material as ProductMaterial)
         : undefined,
     color:
-      color && COLOR_VALUES.has(color as ProductColor) ? (color as ProductColor) : undefined,
+      color && COLOR_VALUES.has(color as ProductColor)
+        ? (color as ProductColor)
+        : undefined,
     minPrice: minPrice ? Number(minPrice) : undefined,
     maxPrice: maxPrice ? Number(maxPrice) : undefined,
-    sort: sort && SORT_VALUES.has(sort as SortOption) ? (sort as SortOption) : "updated_desc",
+    sort:
+      sort && SORT_VALUES.has(sort as SortOption)
+        ? (sort as SortOption)
+        : "updated_desc",
     page: page && Number(page) > 0 ? Number(page) : 1,
   };
 }
@@ -147,7 +161,7 @@ export function useCatalogFilters() {
   };
 
   const removeFilter = (
-    key: "category" | "size" | "heel" | "material" | "color" | "price"
+    key: "category" | "size" | "heel" | "material" | "color" | "price",
   ) => {
     apply((params) => {
       if (key === "price") {

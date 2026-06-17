@@ -1,4 +1,10 @@
-import type { CategorySlug, HeelHeight, ProductColor, ProductMaterial, SortOption } from "@/shared/api/types";
+import type {
+  CategorySlug,
+  HeelHeight,
+  ProductColor,
+  ProductMaterial,
+  SortOption,
+} from "@/shared/api/types";
 
 export const CATEGORY_OPTIONS: { value: CategorySlug; label: string }[] = [
   { value: "high-heels", label: "High Heels" },
@@ -25,7 +31,11 @@ export const MATERIAL_OPTIONS: { value: ProductMaterial; label: string }[] = [
   { value: "microfiber", label: "Мікрофібра" },
 ];
 
-export const COLOR_OPTIONS: { value: ProductColor; label: string; hex: string }[] = [
+export const COLOR_OPTIONS: {
+  value: ProductColor;
+  label: string;
+  hex: string;
+}[] = [
   { value: "black", label: "Чорний", hex: "#111111" },
   { value: "white", label: "Білий", hex: "#FFFFFF" },
   { value: "pink", label: "Рожевий", hex: "#FF9EB5" },

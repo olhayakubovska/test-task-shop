@@ -37,13 +37,16 @@ export function useProducts(filters: ProductsInput): UseProductsResult {
 
   useEffect(() => {
     const char: Record<string, string> = {};
-    if (filters.insoleSize) char["insoleSize"] = insoleSizeToApiKey(filters.insoleSize);
+    if (filters.insoleSize)
+      char["insoleSize"] = insoleSizeToApiKey(filters.insoleSize);
     if (filters.heelHeight) char["heelHeight"] = filters.heelHeight;
     if (filters.material) char["material"] = filters.material;
     if (filters.color) char["color"] = filters.color;
 
     fetchCatalogCards({
-      categoryId: filters.category ? CATEGORY_ID_MAP[filters.category] : undefined,
+      categoryId: filters.category
+        ? CATEGORY_ID_MAP[filters.category]
+        : undefined,
       priceMin: filters.minPrice,
       priceMax: filters.maxPrice,
       sort: (filters.sort as SortOption) ?? "updated_desc",

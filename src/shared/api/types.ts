@@ -20,7 +20,11 @@ export interface CatalogCard {
   categories: CatalogCardCategory[];
   subtitle: LocalizedText;
   pricing: { min: number; max: number; currency: string };
-  availability: { hasAvailable: boolean; variantsCount: number; totalStock: number };
+  availability: {
+    hasAvailable: boolean;
+    variantsCount: number;
+    totalStock: number;
+  };
 }
 
 export interface PaginationMeta {
@@ -35,10 +39,33 @@ export interface CatalogCardsResponse {
   meta: PaginationMeta;
 }
 
-export type SortOption = "updated_desc" | "price_asc" | "price_desc" | "title_asc";
-export type CategorySlug = "high-heels" | "training" | "stage" | "professional" | "clothing" | "accessories";
-export type ProductColor = "black" | "white" | "pink" | "beige" | "shokolad" | "nizhno-blakytnyy" | "red" | "silver";
-export type ProductMaterial = "leather" | "satin" | "synthetic" | "premium-suede" | "microfiber";
+export type SortOption =
+  | "updated_desc"
+  | "price_asc"
+  | "price_desc"
+  | "title_asc";
+export type CategorySlug =
+  | "high-heels"
+  | "training"
+  | "stage"
+  | "professional"
+  | "clothing"
+  | "accessories";
+export type ProductColor =
+  | "black"
+  | "white"
+  | "pink"
+  | "beige"
+  | "shokolad"
+  | "nizhno-blakytnyy"
+  | "red"
+  | "silver";
+export type ProductMaterial =
+  | "leather"
+  | "satin"
+  | "synthetic"
+  | "premium-suede"
+  | "microfiber";
 export type HeelHeight = "7" | "9" | "9-5" | "10" | "11";
 
 export interface BreadcrumbCategory {

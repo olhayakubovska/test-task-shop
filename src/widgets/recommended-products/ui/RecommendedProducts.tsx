@@ -10,15 +10,18 @@ import type { CatalogCard } from "@/shared/api/types";
 export function RecommendedProducts() {
   const [items, setItems] = useState<CatalogCard[]>([]);
   const [error, setError] = useState(false);
+  const [retryKey, setRetryKey] = useState(0);
 
-  const load = () => {
-    setError(false);
+  useEffect(() => {
     fetchCatalogCards({ limit: 8, sort: "updated_desc" })
       .then((res) => setItems(res.items))
       .catch(() => setError(true));
-  };
+  }, [retryKey]);
 
-  useEffect(() => { load(); }, []);
+  const handleRetry = () => {
+    setError(false);
+    setRetryKey((k) => k + 1);
+  };
 
   const mobileItems = items.slice(0, 2);
   const sliderItems = items.slice(0, 8);
@@ -26,15 +29,15 @@ export function RecommendedProducts() {
 
   return (
     <section className="mx-auto max-w-375 px-4 pt-12 md:px-6 md:pt-14 3xl:px-0 3xl:pt-20">
-      <p className="text-xs font-bold font-golos tracking-[1px] leading-3.5 uppercase text-pink-main 3xl:text-sm">
+      <p className="font-golos text-xs leading-3.5 font-bold tracking-[1px] text-pink-main uppercase 3xl:text-sm">
         Our selection
       </p>
 
-      <h2 className="mb-4 text-xl font-extrabold uppercase tracking-[1px] sm:text-4xl md:text-2xl md:leading-9 3xl:text-4xl 3xl:mt-1 3xl:mb-7 ">
+      <h2 className="mb-4 text-xl font-extrabold tracking-[1px] uppercase sm:text-4xl md:text-2xl md:leading-9 3xl:mt-1 3xl:mb-7 3xl:text-4xl">
         Рекомендовані товари
       </h2>
 
-      {error && <ErrorState onRetry={load} />}
+      {error && <ErrorState onRetry={handleRetry} />}
 
       <div className="grid grid-cols-2 gap-4 md:hidden">
         {mobileItems.map((product) => (
@@ -42,9 +45,9 @@ export function RecommendedProducts() {
         ))}
       </div>
 
-      <div className="hidden md:flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [&::-webkit-scrollbar]:hidden md:pb-0 -mr-6 3xl:hidden">
+      <div className="-mr-6 hidden snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:flex md:pb-0 3xl:hidden [&::-webkit-scrollbar]:hidden">
         {sliderItems.map((product) => (
-          <div key={product.groupId} className="snap-start shrink-0 w-40.5">
+          <div key={product.groupId} className="w-40.5 shrink-0 snap-start">
             <SliderProductCard product={product} />
           </div>
         ))}

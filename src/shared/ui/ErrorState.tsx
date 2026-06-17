@@ -32,7 +32,7 @@ export function ErrorState({
         <Button
           onClick={handleRetry}
           disabled={isRetrying}
-          className="border border-dark-main px-8 py-3 text-xs font-semibold uppercase tracking-[0.04em] hover:bg-dark-main hover:text-white-main min-w-40"
+          className="min-w-40 border border-dark-main px-8 py-3 text-xs font-semibold tracking-[0.04em] uppercase hover:bg-dark-main hover:text-white-main"
         >
           {isRetrying ? <Spinner className="h-4 w-4" /> : "Спробувати ще раз"}
         </Button>

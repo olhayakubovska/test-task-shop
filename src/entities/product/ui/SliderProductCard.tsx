@@ -21,7 +21,7 @@ export function SliderProductCard({ product }: SliderProductCardProps) {
 
   return (
     <article className="group flex flex-col">
-      <div className="relative w-40 h-50.75 md:w-40.5 md:h-50.75 3xl:w-full 3xl:h-auto 3xl:aspect-162/203 overflow-hidden bg-bg-muted">
+      <div className="relative h-50.75 w-40 overflow-hidden bg-bg-muted md:h-50.75 md:w-40.5 3xl:aspect-162/203 3xl:h-auto 3xl:w-full">
         <Image
           src={product.imageURL || "/placeholder.jpg"}
           alt={name}
@@ -35,26 +35,26 @@ export function SliderProductCard({ product }: SliderProductCardProps) {
           aria-pressed={isFavorite}
           onClick={() => setIsFavorite((prev) => !prev)}
           className={cn(
-            "absolute right-2 top-2 border-0 bg-white shadow-md w-6 h-6",
-            isFavorite && "text-pink-main"
+            "absolute top-2 right-2 h-6 w-6 border-0 bg-white shadow-md",
+            isFavorite && "text-pink-main",
           )}
         >
           <HeartIcon filled={isFavorite} width={12} height={12} />
         </IconButton>
       </div>
 
-      <div className="flex items-end justify-between p-2 gap-2">
-        <div className="flex flex-col gap-1 min-w-0 flex-1">
-          <h3 className="font-montserrat font-semibold text-[8px] leading-none tracking-[1px] uppercase overflow-hidden line-clamp-2">
+      <div className="flex items-end justify-between gap-2 p-2">
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <h3 className="line-clamp-2 overflow-hidden font-montserrat text-[8px] leading-none font-semibold tracking-[1px] uppercase">
             {name}
           </h3>
-          <p className="font-golos font-normal text-[6px] leading-2 tracking-[1px] text-grey-text uppercase line-clamp-2">
+          <p className="line-clamp-2 font-golos text-[6px] leading-2 font-normal tracking-[1px] text-grey-text uppercase">
             {subtitle}
           </p>
         </div>
 
         <div className="flex shrink-0 flex-col items-end justify-center whitespace-nowrap">
-          <span className="font-montserrat font-semibold text-[10px] leading-none">
+          <span className="font-montserrat text-[10px] leading-none font-semibold">
             {formatPrice(price)}
           </span>
         </div>

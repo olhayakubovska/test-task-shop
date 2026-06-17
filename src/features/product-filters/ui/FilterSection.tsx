@@ -10,7 +10,12 @@ interface FilterSectionProps {
   noBorder?: boolean;
 }
 
-export function FilterSection({ title, children, defaultOpen = true, noBorder }: FilterSectionProps) {
+export function FilterSection({
+  title,
+  children,
+  defaultOpen = true,
+  noBorder,
+}: FilterSectionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
@@ -18,13 +23,15 @@ export function FilterSection({ title, children, defaultOpen = true, noBorder }:
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex w-full font-montserrat items-center justify-between tracking-[1px]  text-left text-xs font-bold uppercase cursor-pointer 3xl:leading-5 3xl:text-base"
+        className="flex w-full cursor-pointer items-center justify-between text-left font-montserrat text-xs font-bold tracking-[1px] uppercase 3xl:text-base 3xl:leading-5"
       >
         {title}
         <ChevronFilterIcon className={isOpen ? "" : "rotate-180"} />
       </button>
       {isOpen && (
-        <div className={`mt-3 space-y-3 3xl:space-y-4 3xl:mt-6 ${noBorder ? "" : "3xl:border-l 3xl:border-border 3xl:pl-3"}`}>
+        <div
+          className={`mt-3 space-y-3 3xl:mt-6 3xl:space-y-4 ${noBorder ? "" : "3xl:border-l 3xl:border-border 3xl:pl-3"}`}
+        >
           {children}
         </div>
       )}

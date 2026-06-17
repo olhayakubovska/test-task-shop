@@ -8,9 +8,22 @@ interface PaginationProps {
   onPageChange?: (page: number) => void;
 }
 
-function getPageNumbers(current: number, total: number): (number | "ellipsis")[] {
-  const pages = new Set<number>([1, 2, 3, total, current, current - 1, current + 1]);
-  const sorted = [...pages].filter((page) => page >= 1 && page <= total).sort((a, b) => a - b);
+function getPageNumbers(
+  current: number,
+  total: number,
+): (number | "ellipsis")[] {
+  const pages = new Set<number>([
+    1,
+    2,
+    3,
+    total,
+    current,
+    current - 1,
+    current + 1,
+  ]);
+  const sorted = [...pages]
+    .filter((page) => page >= 1 && page <= total)
+    .sort((a, b) => a - b);
 
   const result: (number | "ellipsis")[] = [];
   sorted.forEach((page, index) => {
@@ -36,20 +49,26 @@ export function Pagination({ totalPages, onPageChange }: PaginationProps) {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-center gap-6 mt-4 text-sm whitespace-nowrap mx-auto max-w-76.25 md:h-[18px] md:mt-6" aria-label="Пагінація">
+    <nav
+      className="mx-auto mt-4 flex max-w-76.25 flex-wrap items-center justify-center gap-6 text-sm whitespace-nowrap md:mt-6 md:h-[18px]"
+      aria-label="Пагінація"
+    >
       <button
         type="button"
         onClick={() => goTo(currentPage - 1)}
         disabled={currentPage === 1}
-        className="font-semibold text-[10px] uppercase tracking-wide text-dark-main disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed hover:text-foreground"
+        className="cursor-pointer text-[10px] font-semibold tracking-wide text-dark-main uppercase hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
       >
         Попередня
       </button>
 
-      <div className="flex items-center  gap-3">
+      <div className="flex items-center gap-3">
         {getPageNumbers(currentPage, totalPages).map((page, index) =>
           page === "ellipsis" ? (
-            <span key={`ellipsis-${index}`} className="flex h-4 w-4 items-center justify-center text-text-muted">
+            <span
+              key={`ellipsis-${index}`}
+              className="flex h-4 w-4 items-center justify-center text-text-muted"
+            >
               ...
             </span>
           ) : (
@@ -59,7 +78,7 @@ export function Pagination({ totalPages, onPageChange }: PaginationProps) {
               onClick={() => goTo(page)}
               aria-current={page === currentPage ? "page" : undefined}
               className={cn(
-                "flex h-4 w-4 items-center text-sm justify-center cursor-pointer font-bold",
+                "flex h-4 w-4 cursor-pointer items-center justify-center text-sm font-bold",
                 page === currentPage
                   ? "border-b-2 border-pink-main text-foreground"
                   : "text-text-muted hover:text-foreground",
@@ -75,7 +94,7 @@ export function Pagination({ totalPages, onPageChange }: PaginationProps) {
         type="button"
         onClick={() => goTo(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="font-semibold text-[10px] uppercase tracking-wide text-dark-main disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed hover:text-foreground"
+        className="cursor-pointer text-[10px] font-semibold tracking-wide text-dark-main uppercase hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
       >
         Наступна
       </button>

@@ -16,7 +16,9 @@ const BASE_CRUMBS: BreadcrumbItem[] = [
 ];
 
 export function useBreadcrumbs(categorySlug?: CategorySlug): BreadcrumbItem[] {
-  const [fetchedSlug, setFetchedSlug] = useState<CategorySlug | undefined>(undefined);
+  const [fetchedSlug, setFetchedSlug] = useState<CategorySlug | undefined>(
+    undefined,
+  );
   const [fetchedLabel, setFetchedLabel] = useState<string | null>(null);
 
   useEffect(() => {
@@ -37,7 +39,9 @@ export function useBreadcrumbs(categorySlug?: CategorySlug): BreadcrumbItem[] {
       })
       .catch(() => {});
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [categorySlug]);
 
   if (categorySlug && fetchedSlug === categorySlug && fetchedLabel) {

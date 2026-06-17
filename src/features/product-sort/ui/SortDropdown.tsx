@@ -9,14 +9,16 @@ export function SortDropdown() {
   const { filters, setSort } = useCatalogFilters();
   const [isOpen, setIsOpen] = useState(false);
 
-  const current = SORT_OPTIONS.find((option) => option.value === filters.sort) ?? SORT_OPTIONS[0];
+  const current =
+    SORT_OPTIONS.find((option) => option.value === filters.sort) ??
+    SORT_OPTIONS[0];
 
   return (
     <div className="relative">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center gap-3 border-[0.5px] border-[#FF99D6] leading-4 px-4 py-2 text-sm cursor-pointer "
+        className="flex cursor-pointer items-center gap-3 border-[0.5px] border-[#FF99D6] px-4 py-2 text-sm leading-4"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
@@ -46,8 +48,9 @@ export function SortDropdown() {
                     setIsOpen(false);
                   }}
                   className={cn(
-                    "block w-full px-4 py-2.5 text-left text-sm hover:bg-bg-muted cursor-pointer",
-                    option.value === filters.sort && "font-semibold text-pink-main"
+                    "block w-full cursor-pointer px-4 py-2.5 text-left text-sm hover:bg-bg-muted",
+                    option.value === filters.sort &&
+                      "font-semibold text-pink-main",
                   )}
                 >
                   {option.label}
