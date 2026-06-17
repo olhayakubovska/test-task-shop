@@ -136,7 +136,7 @@ export function ProductCatalog() {
                     imageClassName="3xl:w-89.25 3xl:h-112.25"
                     infoClassName="3xl:p-3 "
                     titleClassName="3xl:text-sm 3xl:font-medium 3xl:leading-[100%] 3xl:tracking-[0.5px]"
-                    descriptionClassName="3xl:text-[11px] 3xl:font-normal 3xl:leading-5 3xl:tracking-normal 3xl:whitespace-nowrap 3xl:h-auto"
+                    descriptionClassName="3xl:text-[11px] 3xl:font-normal 3xl:leading-5 3xl:tracking-normal"
                     priceClassName="3xl:text-[15px] 3xl:font-medium 3xl:font-golos 3xl:leading-[100%] 3xl:tracking-normal"
                     favoriteClassName="3xl:h-10 3xl:w-10 3xl:top-4 3xl:right-4"
                   />

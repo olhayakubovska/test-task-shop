@@ -26,7 +26,7 @@ export function SliderProductCard({ product }: SliderProductCardProps) {
           src={product.imageURL || "/placeholder.jpg"}
           alt={name}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover"
           sizes="(max-width: 768px) 40vw, 162px"
           unoptimized
         />

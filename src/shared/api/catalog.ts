@@ -1,6 +1,6 @@
 import type { BreadcrumbCategory, CatalogCardsResponse, CatalogQuery } from "./types";
 
-const BASE_URL = "http://test-woh.keykey.com.ua/v1";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://test-woh.keykey.com.ua/v1";
 
 export async function fetchBreadcrumbs(categoryId: string): Promise<BreadcrumbCategory[]> {
   const res = await fetch(

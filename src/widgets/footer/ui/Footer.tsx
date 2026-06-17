@@ -103,10 +103,22 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div className="pointer-events-none absolute left-1/2 bottom-1 z-0 -translate-x-1/2 select-none opacity-20 flex gap-0 md:left-0 md:translate-x-0 md:w-full md:-mx-6">
-            <Image src="/footer-heels.svg" alt="" aria-hidden width={420} height={110} className="w-1/2 h-auto" />
-            <Image src="/footer-heels.svg" alt="" aria-hidden width={420} height={110} className="w-1/2 h-auto" />
-          </div>
+        </div>
+
+        <div className="pointer-events-none absolute bottom-0 left-0 z-0 select-none whitespace-nowrap overflow-hidden">
+          <span
+            aria-hidden
+            style={{
+              fontFamily: "var(--font-urbanist)",
+              fontWeight: 700,
+              fontSize: "315px",
+              lineHeight: "100%",
+              letterSpacing: "-10px",
+              color: "#9999990D",
+            }}
+          >
+            HIGH HEELS
+          </span>
         </div>
       </div>
 

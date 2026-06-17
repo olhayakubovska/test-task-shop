@@ -30,7 +30,6 @@ const COLOR_VALUES = new Set(COLOR_OPTIONS.map((o) => o.value));
 const SORT_VALUES = new Set(SORT_OPTIONS.map((o) => o.value));
 
 export function parseCatalogFilters(searchParams: URLSearchParams): CatalogFilters {
-  // categories stored as comma-separated: ?category=high-heels,training
   const categoryRaw = searchParams.get("category") ?? "";
   const categories = categoryRaw
     .split(",")

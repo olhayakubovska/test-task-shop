@@ -45,7 +45,7 @@ export function ProductCard({
           src={product.imageURL || "/placeholder.jpg"}
           alt={name}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover"
           sizes="(max-width: 768px) 33vw, (max-width: 1280px) 25vw, 20vw"
           unoptimized
         />
@@ -89,7 +89,7 @@ export function ProductCard({
           </p>
         </div>
 
-        <div className="flex shrink-0 flex-col items-end justify-center whitespace-nowrap">
+        <div className="flex shrink-0 flex-col items-end justify-center whitespace-nowrap md:ml-2 3xl:ml-3">
           <span className={cn("text-[13px] font-semibold", priceClassName)}>
             {formatPrice(price)}
           </span>

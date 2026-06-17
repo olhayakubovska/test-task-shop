@@ -189,7 +189,7 @@ export const FilterSidebar = forwardRef<FilterSidebarHandle, FilterSidebarProps>
           </FilterSection>
 
           {showApplyButton && (
-            <div className="flex gap-2">
+            <div className="flex gap-2 3xl:hidden">
               <Button
                 onClick={() => {
                   setPending({ categories: [], sort: "updated_desc", page: 1 });

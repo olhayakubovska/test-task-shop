@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Golos_Text, Montserrat } from "next/font/google";
+import { Golos_Text, Montserrat, Urbanist } from "next/font/google";
 import "./globals.css";
 
 const golosText = Golos_Text({
@@ -10,6 +10,12 @@ const golosText = Golos_Text({
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin", "cyrillic"],
+});
+
+const urbanist = Urbanist({
+  variable: "--font-urbanist",
+  subsets: ["latin"],
+  weight: ["700"],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="uk" className={`${golosText.variable} ${montserrat.variable} h-full antialiased`}>
+    <html lang="uk" className={`${golosText.variable} ${montserrat.variable} ${urbanist.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
       </body>

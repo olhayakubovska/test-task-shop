@@ -35,7 +35,6 @@ export interface CatalogCardsResponse {
   meta: PaginationMeta;
 }
 
-// URL-level filter value types (stored in URL params)
 export type SortOption = "updated_desc" | "price_asc" | "price_desc" | "title_asc";
 export type CategorySlug = "high-heels" | "training" | "stage" | "professional" | "clothing" | "accessories";
 export type ProductColor = "black" | "white" | "pink" | "beige" | "shokolad" | "nizhno-blakytnyy" | "red" | "silver";
